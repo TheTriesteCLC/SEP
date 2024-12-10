@@ -43,9 +43,13 @@
             errProviderUsername = new ErrorProvider(components);
             errProviderPassword = new ErrorProvider(components);
             errProviderConfirm = new ErrorProvider(components);
+            txtConnection = new TextBox();
+            label7 = new Label();
+            errProviderConnection = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)errProviderUsername).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderConfirm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errProviderConnection).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -149,7 +153,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(335, 327);
+            button1.Location = new Point(335, 396);
             button1.Name = "button1";
             button1.Size = new Size(100, 35);
             button1.TabIndex = 8;
@@ -160,7 +164,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(308, 424);
+            label5.Location = new Point(308, 448);
             label5.Name = "label5";
             label5.Size = new Size(165, 17);
             label5.TabIndex = 10;
@@ -172,7 +176,7 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Nirmala UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(116, 86, 174);
-            label6.Location = new Point(354, 443);
+            label6.Location = new Point(354, 466);
             label6.Name = "label6";
             label6.Size = new Size(63, 25);
             label6.TabIndex = 11;
@@ -191,12 +195,41 @@
             // 
             errProviderConfirm.ContainerControl = this;
             // 
+            // txtConnection
+            // 
+            txtConnection.AccessibleName = "txtConnection";
+            txtConnection.BackColor = Color.FromArgb(230, 231, 233);
+            txtConnection.BorderStyle = BorderStyle.None;
+            txtConnection.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConnection.Location = new Point(280, 356);
+            txtConnection.Multiline = true;
+            txtConnection.Name = "txtConnection";
+            txtConnection.Size = new Size(216, 28);
+            txtConnection.TabIndex = 13;
+            txtConnection.Validating += connectionValidating;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(280, 315);
+            label7.MaximumSize = new Size(180, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(147, 34);
+            label7.TabIndex = 12;
+            label7.Text = "Connection string (MongoDB supported)";
+            // 
+            // errProviderConnection
+            // 
+            errProviderConnection.ContainerControl = this;
+            // 
             // Registration
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(784, 511);
+            Controls.Add(txtConnection);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(button1);
@@ -217,6 +250,7 @@
             ((System.ComponentModel.ISupportInitialize)errProviderUsername).EndInit();
             ((System.ComponentModel.ISupportInitialize)errProviderPassword).EndInit();
             ((System.ComponentModel.ISupportInitialize)errProviderConfirm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errProviderConnection).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +271,8 @@
         private ErrorProvider errProviderUsername;
         private ErrorProvider errProviderPassword;
         private ErrorProvider errProviderConfirm;
+        private TextBox txtConnection;
+        private Label label7;
+        private ErrorProvider errProviderConnection;
     }
 }

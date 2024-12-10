@@ -24,13 +24,14 @@ namespace SEP
         {
             if (txtUsername.Text.Trim().Length > 0
                 && txtPassword.Text.Trim().Length > 0
-                && txtConfirm.Text == txtPassword.Text)
+                && txtConfirm.Text == txtPassword.Text
+                && !string.IsNullOrWhiteSpace(txtConnection.Text))
             {
                 var newUser = new User
                 {
                     username = txtUsername.Text,
                     password = txtPassword.Text,
-                    connectionString = Constants.connectionString
+                    connectionString = txtConnection.Text
                 };
 
                 var result = UsersCollection.GetUsersCollection().addNewUser(newUser);
@@ -130,6 +131,27 @@ namespace SEP
         private void Registration_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void connectionValidating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtConnection.Text))
+            {
+                //e.Cancel = true;
+                txtConnection.Focus();
+                errProviderConnection.SetError(txtConnection, "Connection string should not be left blank!");
+            }
+            else if (!txtConnection.Text.Contains("mongodb+srv"))
+            {
+                //e.Cancel = true;
+                txtConnection.Focus();
+                errProviderConnection.SetError(txtConnection, "Only MongoDB supported");
+            }
+            else
+            {
+                //e.Cancel = false;
+                errProviderConnection.SetError(txtConnection, "");
+            }
         }
     }
 }
