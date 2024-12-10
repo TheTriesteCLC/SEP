@@ -1,34 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thoma\\source\\repos\\SEP\\",
+  "WorkspaceRootPath": "C:\\Users\\thoma\\Desktop\\SEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\dbmanagement\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:dbmanagement\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\source\\repos\\sep\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,90 +35,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersCollection.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\DBManagement\\UsersCollection\\UsersCollection.cs",
-              "RelativeDocumentMoniker": "DBManagement\\UsersCollection\\UsersCollection.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\DBManagement\\UsersCollection\\UsersCollection.cs",
-              "RelativeToolTip": "DBManagement\\UsersCollection\\UsersCollection.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAkwD4AAAARAAAAAAAAAA==",
+              "Title": "Registration.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs",
+              "RelativeDocumentMoniker": "Registration.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs*",
+              "RelativeToolTip": "Registration.cs*",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAwGYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:30:26.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:29:21Z",
+              "WhenOpened": "2024-12-10T03:04:16.248Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Registration.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Registration.cs",
-              "RelativeDocumentMoniker": "Registration.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Registration.cs",
-              "RelativeToolTip": "Registration.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAD4vyMAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:24:49.398Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Registration.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Registration.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs",
               "RelativeDocumentMoniker": "Registration.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Registration.cs [Design]",
-              "RelativeToolTip": "Registration.cs [Design]",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs [Design]*",
+              "RelativeToolTip": "Registration.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:24:44.524Z",
+              "WhenOpened": "2024-12-10T03:03:49.325Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAswGUAAAAZAAAAAAAAAA==",
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Constants.cs",
+              "RelativeDocumentMoniker": "Constants.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Constants.cs",
+              "RelativeToolTip": "Constants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:24:41.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T08:55:25.939Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.cs [Design]",
-              "RelativeToolTip": "Login.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA8wCQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:24:35.752Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Login.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.Designer.cs",
-              "RelativeDocumentMoniker": "Login.Designer.cs",
-              "ToolTip": "C:\\Users\\thoma\\source\\repos\\SEP\\Login.Designer.cs",
-              "RelativeToolTip": "Login.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T04:24:28.6Z",
+              "WhenOpened": "2024-12-09T08:54:45.956Z",
               "EditorCaption": ""
             }
           ]

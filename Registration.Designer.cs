@@ -213,6 +213,7 @@
             Name = "Registration";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registration";
+            Load += Registration_Load;
             ((System.ComponentModel.ISupportInitialize)errProviderUsername).EndInit();
             ((System.ComponentModel.ISupportInitialize)errProviderPassword).EndInit();
             ((System.ComponentModel.ISupportInitialize)errProviderConfirm).EndInit();

@@ -48,13 +48,13 @@ namespace SEP
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtUsername.Focus();
                 errProviderUsername.SetError(txtUsername, "Username required");
             }
             else
             {
-                e.Cancel = false;
+                //e.Cancel = false;
                 errProviderUsername.SetError(txtUsername, "");
             }
         }
@@ -63,13 +63,13 @@ namespace SEP
         {
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtPassword.Focus();
                 errProviderPassword.SetError(txtPassword, "Password required");
             }
             else
             {
-                e.Cancel = false;
+                //e.Cancel = false;
                 errProviderPassword.SetError(txtPassword, "");
             }
         }

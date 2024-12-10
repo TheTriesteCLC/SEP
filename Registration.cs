@@ -35,10 +35,11 @@ namespace SEP
 
                 var result = UsersCollection.GetUsersCollection().addNewUser(newUser);
 
-                if(result)
+                if (result)
                 {
                     MessageBox.Show("Account has been created !!!");
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Username already exists !!!");
                 }
@@ -49,13 +50,13 @@ namespace SEP
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtUsername.Focus();
                 errProviderUsername.SetError(txtUsername, "Username should not be left blank!");
             }
             else
             {
-                e.Cancel = false;
+                //e.Cancel = false;
                 errProviderUsername.SetError(txtUsername, "");
             }
         }
@@ -72,19 +73,19 @@ namespace SEP
         {
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtPassword.Focus();
                 errProviderPassword.SetError(txtPassword, "Password should not be left blank!");
             }
             else if (txtPassword.Text.Length < 5)
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtPassword.Focus();
                 errProviderPassword.SetError(txtPassword, "Password must contains at least 5 characters");
             }
             else
             {
-                e.Cancel = false;
+                //e.Cancel = false;
                 errProviderPassword.SetError(txtPassword, "");
             }
         }
@@ -93,13 +94,13 @@ namespace SEP
         {
             if (txtConfirm.Text != txtPassword.Text)
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 txtConfirm.Focus();
                 errProviderConfirm.SetError(txtConfirm, "Password is not match");
             }
             else
             {
-                e.Cancel = false;
+                //e.Cancel = false;
                 errProviderConfirm.SetError(txtConfirm, "");
             }
         }
@@ -124,6 +125,11 @@ namespace SEP
             this.Hide();
             login.ShowDialog();
             this.Close();
+        }
+
+        private void Registration_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
