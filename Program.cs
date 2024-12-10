@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using MongoDB.Driver;
+using System.Windows.Forms;
 
 namespace SEP
 {
@@ -35,12 +36,16 @@ namespace SEP
             //{
             //    MessageBox.Show(ex.Message);
             //}
-            
-            
 
-            Application.Run(new Registration());
-            Application.Exit();
+
+
+            //Application.Run(new Registration());
+            //Application.Exit();
+
+            Application.Run(new TableList("mongodb://localhost:27017", "sakila-2"));
         }
+
+        
 
         private static void DisplayData(System.Data.DataTable table)
         {
