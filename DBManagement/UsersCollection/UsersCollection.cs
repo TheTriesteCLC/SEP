@@ -56,7 +56,8 @@ namespace SEP.DBManagement.UsersCollection
                 {
                     username = newUser.username,
                     password = SecretHasher.Hash(newUser.password),
-                    connectionString = newUser.connectionString
+                    connectionString = newUser.connectionString,
+                    databaseName = newUser.databaseName
                 };
                 _userCollection.InsertOne(hashedUser);
                 return true;

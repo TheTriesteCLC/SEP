@@ -39,10 +39,8 @@ namespace SEP
 
 
 
-            //Application.Run(new Registration());
-            //Application.Exit();
-
-            Application.Run(new TableList("mongodb://localhost:27017", "sakila-2"));
+            Application.Run(new Registration());
+            Application.Exit();
         }
 
         

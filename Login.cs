@@ -1,4 +1,5 @@
-﻿using SEP.DBManagement.UsersCollection;
+﻿using SEP.CurrUser;
+using SEP.DBManagement.UsersCollection;
 using SEP.Ultils;
 using System;
 using System.Collections.Generic;
@@ -31,11 +32,12 @@ namespace SEP
                     password = txtPassword.Text
                 };
 
-                var foundUser = UsersCollection.GetUsersCollection().loginToUser(loginUser);
+                User foundUser = UsersCollection.GetUsersCollection().loginToUser(loginUser);
 
                 if (foundUser != null)
                 {
-                    MessageBox.Show("Login success !!!");
+                    CurrUserInfo.login(foundUser);
+                    HandleLoginSuccess();
                 }
                 else
                 {
@@ -99,6 +101,14 @@ namespace SEP
             Registration registration = new Registration();
             this.Hide();
             registration.ShowDialog();
+            this.Close();
+        }
+
+        private void HandleLoginSuccess()
+        {
+            TableList tableList = new TableList(CurrUserInfo.getUserDB());
+            this.Hide();
+            tableList.ShowDialog();
             this.Close();
         }
     }

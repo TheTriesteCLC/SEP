@@ -18,5 +18,8 @@ namespace SEP.DBManagement.UsersCollection
 
         [BsonElement("connectionString"), BsonRepresentation(BsonType.String)]
         public string connectionString { get; set; }
+
+        [BsonElement("databaseName"), BsonRepresentation(BsonType.String)]
+        public string databaseName { get; set; }
     }
 }

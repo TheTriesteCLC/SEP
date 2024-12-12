@@ -16,15 +16,20 @@ namespace SEP
 {
     public partial class TableList : Form
     {
-        private IMongoDatabase database;
+        public IMongoDatabase database {get; set;}
 
+        public TableList(IMongoDatabase db)
+        {
+            InitializeComponent();
+            database = db;
+            LoadCollections();
+        }
         public TableList(string connectionString, string databaseName)
         {
             InitializeComponent();
             ConnectToMongoDB(connectionString, databaseName);
             LoadCollections();
         }
-
         private void ConnectToMongoDB(string connectionString, string databaseName)
         {
             var client = new MongoClient(connectionString);

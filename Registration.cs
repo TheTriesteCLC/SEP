@@ -25,13 +25,15 @@ namespace SEP
             if (txtUsername.Text.Trim().Length > 0
                 && txtPassword.Text.Trim().Length > 0
                 && txtConfirm.Text == txtPassword.Text
-                && !string.IsNullOrWhiteSpace(txtConnection.Text))
+                && !string.IsNullOrWhiteSpace(txtConnection.Text)
+                && !string.IsNullOrWhiteSpace(comboboxDatabase.Text))
             {
                 var newUser = new User
                 {
                     username = txtUsername.Text,
                     password = txtPassword.Text,
-                    connectionString = txtConnection.Text
+                    connectionString = txtConnection.Text,
+                    databaseName = comboboxDatabase.Text,
                 };
 
                 var result = UsersCollection.GetUsersCollection().addNewUser(newUser);
@@ -152,6 +154,42 @@ namespace SEP
                 //e.Cancel = false;
                 errProviderConnection.SetError(txtConnection, "");
             }
+        }
+
+        private void comboboxDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConnection_Leave(object sender, EventArgs e)
+        {
+            string connectionString = txtConnection.Text;
+            if (ConnectionHelper.IsValidMongoDBConnection(connectionString))
+            {
+                System.Diagnostics.Debug.WriteLine("connect");
+                comboboxDatabase.Visible = true;
+
+                MongoClient mongoClient = new MongoClient(connectionString);
+                IAsyncCursor<string> cursor = mongoClient.ListDatabaseNames();
+                while (cursor.MoveNext())
+                {
+                    foreach (var doc in cursor.Current)
+                    {
+                        comboboxDatabase.Items.Add(doc);
+                    }
+                }
+                comboboxDatabase.SelectedIndex = 0;
+            }
+            else
+            {
+                comboboxDatabase.Visible = false;
+                comboboxDatabase.Items.Clear();
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

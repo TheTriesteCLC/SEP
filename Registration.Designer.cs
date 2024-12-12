@@ -46,6 +46,7 @@
             txtConnection = new TextBox();
             label7 = new Label();
             errProviderConnection = new ErrorProvider(components);
+            comboboxDatabase = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)errProviderUsername).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderConfirm).BeginInit();
@@ -91,7 +92,7 @@
             txtPassword.BackColor = Color.FromArgb(230, 231, 233);
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(280, 175);
+            txtPassword.Location = new Point(280, 249);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -102,7 +103,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(280, 155);
+            label3.Location = new Point(280, 229);
             label3.Name = "label3";
             label3.Size = new Size(66, 17);
             label3.TabIndex = 3;
@@ -114,7 +115,7 @@
             txtConfirm.BackColor = Color.FromArgb(230, 231, 233);
             txtConfirm.BorderStyle = BorderStyle.None;
             txtConfirm.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtConfirm.Location = new Point(280, 246);
+            txtConfirm.Location = new Point(280, 320);
             txtConfirm.Multiline = true;
             txtConfirm.Name = "txtConfirm";
             txtConfirm.PasswordChar = '*';
@@ -125,7 +126,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(280, 226);
+            label4.Location = new Point(280, 300);
             label4.Name = "label4";
             label4.Size = new Size(120, 17);
             label4.TabIndex = 5;
@@ -137,7 +138,7 @@
             checkShowPassword.AutoSize = true;
             checkShowPassword.Cursor = Cursors.Hand;
             checkShowPassword.FlatStyle = FlatStyle.Flat;
-            checkShowPassword.Location = new Point(280, 280);
+            checkShowPassword.Location = new Point(280, 354);
             checkShowPassword.Name = "checkShowPassword";
             checkShowPassword.Size = new Size(119, 21);
             checkShowPassword.TabIndex = 7;
@@ -201,26 +202,40 @@
             txtConnection.BackColor = Color.FromArgb(230, 231, 233);
             txtConnection.BorderStyle = BorderStyle.None;
             txtConnection.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtConnection.Location = new Point(280, 356);
+            txtConnection.Location = new Point(280, 190);
             txtConnection.Multiline = true;
             txtConnection.Name = "txtConnection";
             txtConnection.Size = new Size(216, 28);
             txtConnection.TabIndex = 13;
+            txtConnection.Leave += txtConnection_Leave;
             txtConnection.Validating += connectionValidating;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(280, 315);
+            label7.Location = new Point(280, 149);
             label7.MaximumSize = new Size(180, 0);
             label7.Name = "label7";
             label7.Size = new Size(147, 34);
             label7.TabIndex = 12;
             label7.Text = "Connection string (MongoDB supported)";
+            label7.Click += label7_Click;
             // 
             // errProviderConnection
             // 
             errProviderConnection.ContainerControl = this;
+            // 
+            // comboboxDatabase
+            // 
+            comboboxDatabase.AccessibleName = "comboboxDatabase";
+            comboboxDatabase.BackColor = Color.FromArgb(230, 231, 233);
+            comboboxDatabase.FormattingEnabled = true;
+            comboboxDatabase.Location = new Point(502, 193);
+            comboboxDatabase.Name = "comboboxDatabase";
+            comboboxDatabase.Size = new Size(121, 25);
+            comboboxDatabase.TabIndex = 14;
+            comboboxDatabase.Visible = false;
+            comboboxDatabase.SelectedIndexChanged += comboboxDatabase_SelectedIndexChanged;
             // 
             // Registration
             // 
@@ -228,6 +243,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(784, 511);
+            Controls.Add(comboboxDatabase);
             Controls.Add(txtConnection);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -274,5 +290,6 @@
         private TextBox txtConnection;
         private Label label7;
         private ErrorProvider errProviderConnection;
+        private ComboBox comboboxDatabase;
     }
 }
