@@ -108,7 +108,6 @@
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.Location = new Point(280, 234);
-            txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(216, 28);
@@ -133,7 +132,6 @@
             txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsername.Location = new Point(280, 166);
-            txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(216, 28);
             txtUsername.TabIndex = 14;

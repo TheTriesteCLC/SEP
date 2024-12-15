@@ -16,7 +16,7 @@ namespace SEP
 {
     public partial class TableList : Form
     {
-        public IMongoDatabase database {get; set;}
+        public IMongoDatabase database { get; set; }
 
         public TableList(IMongoDatabase db)
         {
@@ -65,6 +65,12 @@ namespace SEP
                 DataForm dataForm = new DataForm(database, tableName);
                 dataForm.ShowDialog(); // Hiển thị form mới
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NewTable newTable = new NewTable(database);
+            newTable.ShowDialog();
         }
     }
 }

@@ -4,6 +4,9 @@
     <Compile Update="DataForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="NewTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="TableList.cs">
       <SubType>Form</SubType>
     </Compile>
