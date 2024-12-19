@@ -12,6 +12,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using SEP.CustomClassBuilder;
 using SEP.Screens;
+using SEP.CurrUser;
 
 namespace SEP
 {
@@ -20,10 +21,10 @@ namespace SEP
         private IMongoDatabase database;
         private string collectionName;
 
-        public Dashboard(IMongoDatabase db, string collectionName)
+        public Dashboard(string collectionName)
         {
             InitializeComponent();
-            database = db;
+            database = CurrUserInfo.getUserDB();
             this.collectionName = collectionName;
             LoadCollectionData();
         }
@@ -56,7 +57,7 @@ namespace SEP
 
         private void button2_Enter(object sender, EventArgs e)
         {
-            AddNewDocument addNewDocument = new AddNewDocument();
+            AddNewDocument addNewDocument = new AddNewDocument(collectionName);
             addNewDocument.ShowDialog();
             //this.Close();
         }

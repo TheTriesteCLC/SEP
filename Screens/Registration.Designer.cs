@@ -56,17 +56,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("MS UI Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(116, 86, 174);
             label1.Location = new Point(280, 30);
             label1.Name = "label1";
-            label1.Size = new Size(155, 27);
+            label1.Size = new Size(164, 37);
             label1.TabIndex = 0;
             label1.Text = "Get Started";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label2.Location = new Point(280, 87);
             label2.Name = "label2";
             label2.Size = new Size(69, 17);
@@ -78,7 +79,7 @@
             txtUsername.AccessibleName = "txtUsername";
             txtUsername.BackColor = Color.FromArgb(230, 231, 233);
             txtUsername.BorderStyle = BorderStyle.None;
-            txtUsername.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsername.Location = new Point(280, 107);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
@@ -91,7 +92,7 @@
             txtPassword.AccessibleName = "txtPassword";
             txtPassword.BackColor = Color.FromArgb(230, 231, 233);
             txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.Location = new Point(280, 249);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
@@ -103,6 +104,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label3.Location = new Point(280, 229);
             label3.Name = "label3";
             label3.Size = new Size(66, 17);
@@ -114,7 +116,7 @@
             txtConfirm.AccessibleName = "txtConfirm";
             txtConfirm.BackColor = Color.FromArgb(230, 231, 233);
             txtConfirm.BorderStyle = BorderStyle.None;
-            txtConfirm.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConfirm.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtConfirm.Location = new Point(280, 320);
             txtConfirm.Multiline = true;
             txtConfirm.Name = "txtConfirm";
@@ -126,6 +128,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label4.Location = new Point(280, 300);
             label4.Name = "label4";
             label4.Size = new Size(120, 17);
@@ -138,6 +141,7 @@
             checkShowPassword.AutoSize = true;
             checkShowPassword.Cursor = Cursors.Hand;
             checkShowPassword.FlatStyle = FlatStyle.Flat;
+            checkShowPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkShowPassword.Location = new Point(280, 354);
             checkShowPassword.Name = "checkShowPassword";
             checkShowPassword.Size = new Size(119, 21);
@@ -152,7 +156,7 @@
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(335, 396);
             button1.Name = "button1";
@@ -165,9 +169,10 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(308, 448);
             label5.Name = "label5";
-            label5.Size = new Size(165, 17);
+            label5.Size = new Size(164, 17);
             label5.TabIndex = 10;
             label5.Text = "Already have an account?";
             // 
@@ -175,7 +180,7 @@
             // 
             label6.AutoSize = true;
             label6.Cursor = Cursors.Hand;
-            label6.Font = new Font("Nirmala UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(116, 86, 174);
             label6.Location = new Point(354, 466);
             label6.Name = "label6";
@@ -201,7 +206,7 @@
             txtConnection.AccessibleName = "txtConnection";
             txtConnection.BackColor = Color.FromArgb(230, 231, 233);
             txtConnection.BorderStyle = BorderStyle.None;
-            txtConnection.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConnection.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtConnection.Location = new Point(280, 190);
             txtConnection.Multiline = true;
             txtConnection.Name = "txtConnection";
@@ -213,6 +218,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label7.Location = new Point(280, 149);
             label7.MaximumSize = new Size(180, 0);
             label7.Name = "label7";
@@ -228,6 +234,7 @@
             // 
             comboboxDatabase.AccessibleName = "comboboxDatabase";
             comboboxDatabase.BackColor = Color.FromArgb(230, 231, 233);
+            comboboxDatabase.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboboxDatabase.FormattingEnabled = true;
             comboboxDatabase.Location = new Point(502, 193);
             comboboxDatabase.Name = "comboboxDatabase";

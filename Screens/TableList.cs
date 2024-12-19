@@ -11,33 +11,23 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using SEP.CurrUser;
 
 namespace SEP
 {
     public partial class TableList : Form
     {
-        public IMongoDatabase database { get; set; }
+        private IMongoDatabase database;
 
-        public TableList(IMongoDatabase db)
+        public TableList()
         {
             InitializeComponent();
-            database = db;
+            database = CurrUserInfo.getUserDB();
             LoadCollections();
-        }
-        public TableList(string connectionString, string databaseName)
-        {
-            InitializeComponent();
-            ConnectToMongoDB(connectionString, databaseName);
-            LoadCollections();
-        }
-        private void ConnectToMongoDB(string connectionString, string databaseName)
-        {
-            var client = new MongoClient(connectionString);
-            database = client.GetDatabase(databaseName);
         }
         private void LoadCollections()
         {
-            var collections = database.ListCollectionNames().ToList();
+            var collections = CurrUserInfo.getUserDB().ListCollectionNames().ToList();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Table Name");
 
@@ -62,14 +52,14 @@ namespace SEP
             if (e.RowIndex >= 0)
             {
                 string tableName = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Dashboard dataForm = new Dashboard(database, tableName);
+                Dashboard dataForm = new Dashboard(tableName);
                 dataForm.ShowDialog(); // Hiển thị form mới
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AddNewTable newTable = new AddNewTable(database);
+            AddNewTable newTable = new AddNewTable();
             newTable.ShowDialog();
         }
     }

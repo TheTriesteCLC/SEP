@@ -35,9 +35,9 @@
             label4 = new Label();
             label3 = new Label();
             button2 = new Button();
-            label2 = new Label();
+            labelCollectionName = new Label();
             button1 = new Button();
-            button3 = new Button();
+            buttonGetSchema = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -57,7 +57,7 @@
             tableLayoutPanel1.Location = new Point(12, 91);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.Size = new Size(776, 347);
             tableLayoutPanel1.TabIndex = 0;
@@ -65,15 +65,14 @@
             // button4
             // 
             button4.Anchor = AnchorStyles.Top;
-            button4.BackColor = Color.FromArgb(116, 86, 174);
+            button4.BackColor = SystemColors.Control;
             button4.Cursor = Cursors.Hand;
             button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.White;
+            button4.ForeColor = SystemColors.ControlText;
             button4.Location = new Point(22, 3);
             button4.Name = "button4";
-            button4.Size = new Size(33, 35);
+            button4.Size = new Size(33, 34);
             button4.TabIndex = 13;
             button4.Text = "+";
             button4.UseVisualStyleBackColor = false;
@@ -83,10 +82,10 @@
             // 
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(595, 13);
+            label5.Font = new Font("Segoe UI", 12F);
+            label5.Location = new Point(589, 9);
             label5.Name = "label5";
-            label5.Size = new Size(31, 15);
+            label5.Size = new Size(42, 21);
             label5.TabIndex = 14;
             label5.Text = "Data";
             // 
@@ -94,10 +93,10 @@
             // 
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(325, 13);
+            label4.Font = new Font("Segoe UI", 12F);
+            label4.Location = new Point(319, 9);
             label4.Name = "label4";
-            label4.Size = new Size(31, 15);
+            label4.Size = new Size(42, 21);
             label4.TabIndex = 13;
             label4.Text = "Type";
             // 
@@ -105,67 +104,67 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(124, 13);
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(114, 9);
             label3.Name = "label3";
-            label3.Size = new Size(65, 15);
+            label3.Size = new Size(86, 21);
             label3.TabIndex = 12;
             label3.Text = "Field name";
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(116, 86, 174);
+            button2.BackColor = SystemColors.Control;
             button2.Cursor = Cursors.Hand;
             button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(688, 12);
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.ForeColor = SystemColors.ControlText;
+            button2.Location = new Point(688, 58);
             button2.Name = "button2";
-            button2.Size = new Size(100, 35);
+            button2.Size = new Size(100, 22);
             button2.TabIndex = 9;
             button2.Text = "Add";
             button2.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // labelCollectionName
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 22);
-            label2.Name = "label2";
-            label2.Size = new Size(108, 25);
-            label2.TabIndex = 10;
-            label2.Text = "Table name";
+            labelCollectionName.AutoSize = true;
+            labelCollectionName.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelCollectionName.Location = new Point(12, 18);
+            labelCollectionName.Name = "labelCollectionName";
+            labelCollectionName.Size = new Size(155, 37);
+            labelCollectionName.TabIndex = 10;
+            labelCollectionName.Text = "Table name";
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(116, 86, 174);
+            button1.BackColor = Color.LightGray;
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(555, 12);
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ControlText;
+            button1.Location = new Point(566, 58);
             button1.Name = "button1";
-            button1.Size = new Size(116, 35);
+            button1.Size = new Size(116, 22);
             button1.TabIndex = 11;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // buttonGetSchema
             // 
-            button3.BackColor = Color.FromArgb(116, 86, 174);
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(12, 50);
-            button3.Name = "button3";
-            button3.Size = new Size(116, 35);
-            button3.TabIndex = 12;
-            button3.Text = "Get schema";
-            button3.UseVisualStyleBackColor = false;
+            buttonGetSchema.AccessibleName = "buttonGetSchema";
+            buttonGetSchema.BackColor = SystemColors.Control;
+            buttonGetSchema.Cursor = Cursors.Hand;
+            buttonGetSchema.FlatAppearance.BorderSize = 0;
+            buttonGetSchema.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonGetSchema.ForeColor = SystemColors.ControlText;
+            buttonGetSchema.Location = new Point(12, 58);
+            buttonGetSchema.Name = "buttonGetSchema";
+            buttonGetSchema.Size = new Size(116, 22);
+            buttonGetSchema.TabIndex = 12;
+            buttonGetSchema.Text = "Get schema";
+            buttonGetSchema.UseVisualStyleBackColor = false;
+            buttonGetSchema.Click += buttonGetSchema_Click;
             // 
             // contextMenuStrip1
             // 
@@ -177,9 +176,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
+            Controls.Add(buttonGetSchema);
             Controls.Add(button1);
-            Controls.Add(label2);
+            Controls.Add(labelCollectionName);
             Controls.Add(button2);
             Controls.Add(tableLayoutPanel1);
             Name = "AddNewDocument";
@@ -194,12 +193,12 @@
 
         private TableLayoutPanel tableLayoutPanel1;
         private Button button2;
-        private Label label2;
+        private Label labelCollectionName;
         private Label label5;
         private Label label4;
         private Label label3;
         private Button button1;
-        private Button button3;
+        private Button buttonGetSchema;
         private Button button4;
         private ContextMenuStrip contextMenuStrip1;
     }

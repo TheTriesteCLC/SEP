@@ -48,11 +48,11 @@
             // 
             labelRegister.AutoSize = true;
             labelRegister.Cursor = Cursors.Hand;
-            labelRegister.Font = new Font("Nirmala UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelRegister.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelRegister.ForeColor = Color.FromArgb(116, 86, 174);
             labelRegister.Location = new Point(337, 449);
             labelRegister.Name = "labelRegister";
-            labelRegister.Size = new Size(83, 25);
+            labelRegister.Size = new Size(84, 25);
             labelRegister.TabIndex = 22;
             labelRegister.Text = "Register";
             labelRegister.Click += labelRegister_Click;
@@ -60,11 +60,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(164, 165, 169);
             label5.Location = new Point(308, 430);
             label5.Name = "label5";
-            label5.Size = new Size(149, 17);
+            label5.Size = new Size(148, 17);
             label5.TabIndex = 21;
             label5.Text = "Dont have an account?";
             // 
@@ -75,7 +75,7 @@
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("MS UI Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(280, 320);
             btnLogin.Name = "btnLogin";
@@ -91,7 +91,7 @@
             checkShowPassword.AutoSize = true;
             checkShowPassword.Cursor = Cursors.Hand;
             checkShowPassword.FlatStyle = FlatStyle.Flat;
-            checkShowPassword.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkShowPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkShowPassword.ForeColor = Color.FromArgb(164, 165, 169);
             checkShowPassword.Location = new Point(280, 278);
             checkShowPassword.Name = "checkShowPassword";
@@ -106,7 +106,7 @@
             txtPassword.AccessibleName = "txtPassword";
             txtPassword.BackColor = Color.FromArgb(230, 231, 233);
             txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Font = new Font("Segoe UI", 15.75F);
             txtPassword.Location = new Point(280, 234);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -117,7 +117,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(164, 165, 169);
             label3.Location = new Point(280, 214);
             label3.Name = "label3";
@@ -130,7 +130,7 @@
             txtUsername.AccessibleName = "txtUsername";
             txtUsername.BackColor = Color.FromArgb(230, 231, 233);
             txtUsername.BorderStyle = BorderStyle.None;
-            txtUsername.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Font = new Font("Segoe UI", 15.75F);
             txtUsername.Location = new Point(280, 166);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(216, 28);
@@ -140,7 +140,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(164, 165, 169);
             label2.Location = new Point(280, 146);
             label2.Name = "label2";
@@ -151,11 +151,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("MS UI Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(116, 86, 174);
             label1.Location = new Point(280, 89);
             label1.Name = "label1";
-            label1.Size = new Size(121, 27);
+            label1.Size = new Size(136, 37);
             label1.TabIndex = 12;
             label1.Text = "Welcome";
             // 

@@ -7,12 +7,8 @@
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|C:\\Users\\thoma\\Desktop\\SEP\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,24 +18,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddNewDocument.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.Designer.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.Designer.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.Designer.cs",
-              "RelativeToolTip": "Screens\\AddNewDocument.Designer.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAcwE8AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T01:07:40.964Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -50,7 +33,7 @@
               "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs [Design]",
               "RelativeToolTip": "Screens\\AddNewDocument.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T00:59:40.638Z",
+              "WhenOpened": "2024-12-19T05:49:08.323Z",
               "EditorCaption": " [Design]"
             },
             {
@@ -61,9 +44,9 @@
               "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
               "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
               "RelativeToolTip": "Screens\\AddNewDocument.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAvwGkAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAkwJwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T16:38:06.249Z",
+              "WhenOpened": "2024-12-19T04:27:41.064Z",
               "EditorCaption": ""
             }
           ]

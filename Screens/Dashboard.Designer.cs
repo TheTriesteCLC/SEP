@@ -39,6 +39,7 @@
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
             button1.Location = new Point(345, 9);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
@@ -49,6 +50,7 @@
             // 
             // button2
             // 
+            button2.Cursor = Cursors.Hand;
             button2.Location = new Point(432, 9);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
@@ -60,6 +62,7 @@
             // 
             // button3
             // 
+            button3.Cursor = Cursors.Hand;
             button3.Location = new Point(520, 9);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
@@ -70,6 +73,7 @@
             // 
             // button4
             // 
+            button4.Cursor = Cursors.Hand;
             button4.Location = new Point(607, 9);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
@@ -90,6 +94,7 @@
             // 
             // button5
             // 
+            button5.Cursor = Cursors.Hand;
             button5.Location = new Point(10, 9);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";

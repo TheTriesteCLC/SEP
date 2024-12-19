@@ -106,7 +106,7 @@ namespace SEP
 
         private void HandleLoginSuccess()
         {
-            TableList tableList = new TableList(CurrUserInfo.getUserDB());
+            TableList tableList = new TableList();
             this.Hide();
             tableList.ShowDialog();
             this.Close();

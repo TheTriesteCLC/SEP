@@ -39,11 +39,11 @@
             // 
             // button4
             // 
-            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button4.Location = new Point(607, 9);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(82, 32);
+            button4.Size = new Size(82, 22);
             button4.TabIndex = 9;
             button4.Text = "Add";
             button4.UseVisualStyleBackColor = true;
@@ -52,11 +52,11 @@
             // button5
             // 
             button5.BackColor = SystemColors.Control;
-            button5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button5.Location = new Point(10, 9);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(82, 32);
+            button5.Size = new Size(82, 22);
             button5.TabIndex = 10;
             button5.Text = "Back\r\n";
             button5.UseVisualStyleBackColor = false;
@@ -66,17 +66,17 @@
             txtTableName.AccessibleName = "txtTableName";
             txtTableName.BackColor = Color.FromArgb(230, 231, 233);
             txtTableName.BorderStyle = BorderStyle.None;
-            txtTableName.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTableName.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTableName.Location = new Point(250, 74);
             txtTableName.Name = "txtTableName";
-            txtTableName.Size = new Size(216, 21);
+            txtTableName.Size = new Size(216, 28);
             txtTableName.TabIndex = 17;
             txtTableName.Validating += tableNameValidating;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(164, 165, 169);
             label2.Location = new Point(250, 54);
             label2.Name = "label2";
@@ -100,7 +100,6 @@
             Name = "AddNewTable";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "NewTable";
-            Load += NewTable_Load;
             ((System.ComponentModel.ISupportInitialize)errProviderTablename).EndInit();
             ResumeLayout(false);
             PerformLayout();

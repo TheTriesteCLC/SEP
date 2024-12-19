@@ -9,21 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SEP.CurrUser;
 
 namespace SEP
 {
     public partial class AddNewTable : Form
     {
-        public IMongoDatabase database { get; set; }
-        public AddNewTable(IMongoDatabase db)
+        private IMongoDatabase database;
+        public AddNewTable()
         {
             InitializeComponent();
-            database = db;
-        }
-
-        private void NewTable_Load(object sender, EventArgs e)
-        {
-
+            database = CurrUserInfo.getUserDB();
         }
 
         private void tableNameValidating(object sender, CancelEventArgs e)
