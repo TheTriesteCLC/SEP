@@ -92,5 +92,7 @@ D:\SUBJECT\NAM_4\Design_pattern\SEP\obj\Debug\net8.0-windows\SEP.genruntimeconfi
 D:\SUBJECT\NAM_4\Design_pattern\SEP\obj\Debug\net8.0-windows\ref\SEP.dll
 D:\SUBJECT\NAM_4\Design_pattern\SEP\obj\Debug\net8.0-windows\SEP.TableList.resources
 D:\SUBJECT\NAM_4\Design_pattern\SEP\obj\Debug\net8.0-windows\SEP.DataForm.resources
-C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.DataForm.resources
 C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.TableList.resources
+C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.AddNewTable.resources
+C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.Dashboard.resources
+C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.Screens.AddNewDocument.resources

@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace SEP
 {
-    public partial class NewTable : Form
+    public partial class AddNewTable : Form
     {
         public IMongoDatabase database { get; set; }
-        public NewTable(IMongoDatabase db)
+        public AddNewTable(IMongoDatabase db)
         {
             InitializeComponent();
             database = db;

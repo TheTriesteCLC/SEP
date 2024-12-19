@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\thoma\\Desktop\\SEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\curruserinfo\\curruserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:curruserinfo\\curruserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\dbmanagement\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:dbmanagement\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,55 +26,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CurrUserInfo.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\CurrUserInfo\\CurrUserInfo.cs",
-              "RelativeDocumentMoniker": "CurrUserInfo\\CurrUserInfo.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\CurrUserInfo\\CurrUserInfo.cs",
-              "RelativeToolTip": "CurrUserInfo\\CurrUserInfo.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T08:03:21.428Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersCollection.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\DBManagement\\UsersCollection\\UsersCollection.cs",
-              "RelativeDocumentMoniker": "DBManagement\\UsersCollection\\UsersCollection.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\DBManagement\\UsersCollection\\UsersCollection.cs",
-              "RelativeToolTip": "DBManagement\\UsersCollection\\UsersCollection.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAcwDsAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T08:02:53.624Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Constants.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Constants.cs",
-              "RelativeDocumentMoniker": "Constants.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Constants.cs",
-              "RelativeToolTip": "Constants.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Title": "AddNewTable.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewTable.cs",
+              "RelativeDocumentMoniker": "Screens\\AddNewTable.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewTable.cs [Design]*",
+              "RelativeToolTip": "Screens\\AddNewTable.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T07:52:01.442Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T01:41:35.828Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Registration.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs",
-              "RelativeDocumentMoniker": "Registration.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Registration.cs",
-              "RelativeToolTip": "Registration.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAqwCYAAABMAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AddNewDocument.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
+              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs [Design]",
+              "RelativeToolTip": "Screens\\AddNewDocument.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T06:45:38.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T00:59:40.638Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

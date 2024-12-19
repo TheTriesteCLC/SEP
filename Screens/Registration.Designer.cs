@@ -219,7 +219,6 @@
             label7.Size = new Size(147, 34);
             label7.TabIndex = 12;
             label7.Text = "Connection string (MongoDB supported)";
-            label7.Click += label7_Click;
             // 
             // errProviderConnection
             // 

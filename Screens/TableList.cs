@@ -62,14 +62,14 @@ namespace SEP
             if (e.RowIndex >= 0)
             {
                 string tableName = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                DataForm dataForm = new DataForm(database, tableName);
+                Dashboard dataForm = new Dashboard(database, tableName);
                 dataForm.ShowDialog(); // Hiển thị form mới
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            NewTable newTable = new NewTable(database);
+            AddNewTable newTable = new AddNewTable(database);
             newTable.ShowDialog();
         }
     }

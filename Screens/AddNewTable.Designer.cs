@@ -1,6 +1,6 @@
 ﻿namespace SEP
 {
-    partial class NewTable
+    partial class AddNewTable
     {
         /// <summary>
         /// Required designer variable.
@@ -39,10 +39,11 @@
             // 
             // button4
             // 
+            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button4.Location = new Point(607, 9);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(82, 22);
+            button4.Size = new Size(82, 32);
             button4.TabIndex = 9;
             button4.Text = "Add";
             button4.UseVisualStyleBackColor = true;
@@ -50,13 +51,15 @@
             // 
             // button5
             // 
+            button5.BackColor = SystemColors.Control;
+            button5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button5.Location = new Point(10, 9);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(82, 22);
+            button5.Size = new Size(82, 32);
             button5.TabIndex = 10;
             button5.Text = "Back\r\n";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             // 
             // txtTableName
             // 
@@ -66,7 +69,7 @@
             txtTableName.Font = new Font("MS UI Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTableName.Location = new Point(250, 74);
             txtTableName.Name = "txtTableName";
-            txtTableName.Size = new Size(216, 28);
+            txtTableName.Size = new Size(216, 21);
             txtTableName.TabIndex = 17;
             txtTableName.Validating += tableNameValidating;
             // 
@@ -85,7 +88,7 @@
             // 
             errProviderTablename.ContainerControl = this;
             // 
-            // NewTable
+            // AddNewTable
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -94,8 +97,8 @@
             Controls.Add(txtTableName);
             Controls.Add(button5);
             Controls.Add(button4);
+            Name = "AddNewTable";
             StartPosition = FormStartPosition.CenterScreen;
-            Name = "NewTable";
             Text = "NewTable";
             Load += NewTable_Load;
             ((System.ComponentModel.ISupportInitialize)errProviderTablename).EndInit();

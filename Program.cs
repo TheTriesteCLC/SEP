@@ -39,7 +39,7 @@ namespace SEP
 
 
 
-            Application.Run(new Registration());
+            Application.Run(new Login());
             Application.Exit();
         }
 

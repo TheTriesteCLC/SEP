@@ -5,19 +5,22 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using SEP.CustomClassBuilder;
+using SEP.Screens;
 
 namespace SEP
 {
-    public partial class DataForm : Form
+    public partial class Dashboard : Form
     {
         private IMongoDatabase database;
         private string collectionName;
 
-        public DataForm(IMongoDatabase db, string collectionName)
+        public Dashboard(IMongoDatabase db, string collectionName)
         {
             InitializeComponent();
             database = db;
@@ -49,6 +52,13 @@ namespace SEP
             }
 
             dataGridView1.DataSource = dataTable;
+        }
+
+        private void button2_Enter(object sender, EventArgs e)
+        {
+            AddNewDocument addNewDocument = new AddNewDocument();
+            addNewDocument.ShowDialog();
+            //this.Close();
         }
     }
 }
