@@ -68,7 +68,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TableList";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Table list";
+            Text = "Table List";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

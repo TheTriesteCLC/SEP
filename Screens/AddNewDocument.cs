@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.VisualBasic.FileIO;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SEP.CurrUser;
 using SEP.CustomClassBuilder;
@@ -21,9 +22,9 @@ namespace SEP.Screens
         private IMongoDatabase database;
         private string collectionName;
         private CustomClass schema;
-        private List<(string PropertyName, Type PropertyType)> fields;
+        private List<(string PropertyName, Type PropertyType)> initFields;
 
-        private List<Button> deletesBtnList;
+        private List<FieldUI> fieldUIList;
 
         public AddNewDocument(string collectionName)
         {
@@ -31,10 +32,10 @@ namespace SEP.Screens
             this.database = CurrUserInfo.getUserDB();
             this.collectionName = collectionName;
             labelCollectionName.Text = collectionName;
-            this.fields = GetCollectionFields();
-            this.schema = new CustomClass(collectionName, fields);
+            this.initFields = GetCollectionFields();
+            //this.schema = new CustomClass(collectionName, fields);
 
-            deletesBtnList = new List<Button>();
+            fieldUIList = new List<FieldUI>();
         }
 
         private List<(string PropertyName, Type PropertyType)> GetCollectionFields()
@@ -100,60 +101,27 @@ namespace SEP.Screens
 
         private void addNewField(string fieldName, Type fieldType)
         {
-            Button removeButton = new Button
-            {
-                Text = "X",
-                BackColor = Color.FromArgb(192, 192, 192),
-                ForeColor = Color.Black,
-                Cursor = Cursors.Hand,
-                FlatStyle = FlatStyle.Flat,
-                Width = 30,
-                Height = 30,
-                Anchor = AnchorStyles.Top,
-            };
-
-            TextBox fieldNameTextBox = new TextBox
-            {
-                Width = 150,
-                Text = fieldName,
-                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
-            };
-
-            ComboBox typeComboBox = new ComboBox
-            {
-                Width = 200,
-                Anchor = AnchorStyles.Top,
-            };
-
-            foreach (Type type in Constants.supportedType)
-            {
-                typeComboBox.Items.Add(type);
-            }
-
-            typeComboBox.SelectedIndex = Constants.supportedType.FindIndex(t => t == fieldType);
-
-            TextBox dataTextBox = new TextBox
-            {
-                Width = 200,
-                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
-            };
-
-            deletesBtnList.Add(removeButton);
+            FieldUI newFieldUI = new FieldUI(fieldType, fieldName);
+            fieldUIList.Add(newFieldUI);
 
             int rowIndex = tableLayoutPanel1.RowCount;
             tableLayoutPanel1.RowCount++;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            tableLayoutPanel1.Controls.Add(removeButton, 0, rowIndex);
-            tableLayoutPanel1.Controls.Add(fieldNameTextBox, 1, rowIndex);
-            tableLayoutPanel1.Controls.Add(typeComboBox, 2, rowIndex);
-            tableLayoutPanel1.Controls.Add(dataTextBox, 3, rowIndex);
+            tableLayoutPanel1.Controls.Add(newFieldUI.deleteBtn, 0, rowIndex);
+            tableLayoutPanel1.Controls.Add(newFieldUI.nameInput, 1, rowIndex);
+            tableLayoutPanel1.Controls.Add(newFieldUI.typeComboBox, 2, rowIndex);
+            tableLayoutPanel1.Controls.Add(newFieldUI.dataInput, 3, rowIndex);
 
-            removeButton.Click += (s, e) =>
+            newFieldUI.deleteBtn.Click += (s, e) =>
             {
-                var deleteIndex = deletesBtnList.FindIndex(btn => btn == removeButton) + 1;
-                RemoveRow(deleteIndex);
-                deletesBtnList.RemoveAt(deleteIndex - 1);
+                var deleteIndex = fieldUIList.FindIndex(field => field.deleteBtn == newFieldUI.deleteBtn);
+                if (deleteIndex != -1)
+                {
+                    RemoveRow(deleteIndex + 1);
+                    System.Diagnostics.Debug.WriteLine(deleteIndex);
+                    fieldUIList.RemoveAt(deleteIndex);
+                }
             };
         }
 
@@ -164,10 +132,14 @@ namespace SEP.Screens
         private void buttonGetSchema_Click(object sender, EventArgs e)
         {
             ClearTableLayoutPanel();
-            foreach (var field in fields)
+            foreach (var field in initFields)
             {
                 addNewField(field.PropertyName, field.PropertyType);
             }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            handleCreateNewDocument();
         }
         private void ClearTableLayoutPanel()
         {
@@ -186,20 +158,86 @@ namespace SEP.Screens
                 tableLayoutPanel1.RowStyles.RemoveAt(i);
             }
             tableLayoutPanel1.RowCount = 1;
-            this.deletesBtnList.Clear();
+            this.fieldUIList.Clear();
         }
-        private void handleSubmitNewDocument()
+        private void handleCreateNewDocument()
         {
-            //foreach ((string PropertyName, Type PropertyType) col in columnNames)
-            //{
-            //    newClass.setProp(col.PropertyName, "hihi");
-            //}
+            List<(string PropertyName, Type PropertyType)> fields = new List<(string PropertyName, Type PropertyType)>();
+            foreach (var fieldUI in fieldUIList)
+            {
+                int selectedIndex = fieldUI.typeComboBox.SelectedIndex;
+                fields.Add((fieldUI.nameInput.Text, Constants.supportedType[selectedIndex]));
+            }
+            CustomClass newDocument = new CustomClass(collectionName, fields);
 
-            //var client = new MongoClient(Constants.connectionString);
-            //var database1 = client.GetDatabase(Constants.mainDBString);
-            //var collection1 = database1.GetCollection<BsonDocument>("test");
+            foreach (var fieldUI in fieldUIList)
+            {
+                newDocument.setProp(fieldUI.nameInput.Text, fieldUI.dataInput.Text);
+            }
 
-            //collection1.InsertOne(newClass.ToBsonDocument());
+
+            var client = new MongoClient(Constants.connectionString);
+            var database1 = client.GetDatabase(Constants.mainDBString);
+            var collection1 = database1.GetCollection<BsonDocument>(collectionName);
+
+            collection1.InsertOne(newDocument.ToBsonDocument());
+
+            System.Windows.Forms.MessageBox.Show($"Add new document to '{collectionName}'!");
+            ClearTableLayoutPanel();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+
+    internal class FieldUI
+    {
+        public Button deleteBtn;
+        public TextBox nameInput;
+        public ComboBox typeComboBox;
+        public TextBox dataInput;
+
+        public FieldUI(Type fieldType, string fieldName = "")
+        {
+            this.deleteBtn = new Button
+            {
+                Text = "X",
+                BackColor = Color.FromArgb(192, 192, 192),
+                ForeColor = Color.Black,
+                Cursor = Cursors.Hand,
+                FlatStyle = FlatStyle.Flat,
+                Width = 30,
+                Height = 30,
+                Anchor = AnchorStyles.Top,
+            };
+
+            this.nameInput = new TextBox
+            {
+                Width = 150,
+                Text = fieldName,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+            };
+
+            this.typeComboBox = new ComboBox
+            {
+                Width = 200,
+                Anchor = AnchorStyles.Top,
+            };
+
+            foreach (Type type in Constants.supportedType)
+            {
+                this.typeComboBox.Items.Add(type);
+            }
+
+            this.typeComboBox.SelectedIndex = Constants.supportedType.FindIndex(t => t == fieldType);
+
+            this.dataInput = new TextBox
+            {
+                Width = 200,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+            };
         }
     }
 }

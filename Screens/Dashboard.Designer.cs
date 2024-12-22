@@ -58,7 +58,7 @@
             button2.TabIndex = 1;
             button2.Text = "Add";
             button2.UseVisualStyleBackColor = true;
-            button2.Enter += button2_Enter;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -102,6 +102,7 @@
             button5.TabIndex = 5;
             button5.Text = "Back\r\n";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // Dashboard
             // 
@@ -116,7 +117,8 @@
             Controls.Add(button1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Dashboard";
-            Text = "Data Form";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

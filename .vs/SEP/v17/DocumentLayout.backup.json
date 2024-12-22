@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\thoma\\Desktop\\SEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|C:\\Users\\thoma\\Desktop\\SEP\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,26 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AddNewDocument.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs [Design]",
-              "RelativeToolTip": "Screens\\AddNewDocument.cs [Design]",
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "Screens\\Dashboard.Designer.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.Designer.cs",
+              "RelativeToolTip": "Screens\\Dashboard.Designer.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAcwDwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:49:08.323Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-22T11:13:46.125Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AddNewDocument.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeToolTip": "Screens\\AddNewDocument.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAkwJwAAAAQAAAAAAAAAA==",
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.cs",
+              "RelativeToolTip": "Screens\\Dashboard.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAvwDgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T04:27:41.064Z",
+              "WhenOpened": "2024-12-22T11:12:32.543Z",
               "EditorCaption": ""
             }
           ]

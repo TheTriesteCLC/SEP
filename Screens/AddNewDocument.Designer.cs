@@ -124,6 +124,7 @@
             button2.TabIndex = 9;
             button2.Text = "Add";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // labelCollectionName
             // 
@@ -149,6 +150,7 @@
             button1.TabIndex = 11;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // buttonGetSchema
             // 
@@ -182,7 +184,8 @@
             Controls.Add(button2);
             Controls.Add(tableLayoutPanel1);
             Name = "AddNewDocument";
-            Text = "AddNewDocument";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Add New Document";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);

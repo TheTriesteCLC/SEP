@@ -60,6 +60,7 @@
             button5.TabIndex = 10;
             button5.Text = "Back\r\n";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // txtTableName
             // 
@@ -99,7 +100,7 @@
             Controls.Add(button4);
             Name = "AddNewTable";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "NewTable";
+            Text = "Add New Table";
             ((System.ComponentModel.ISupportInitialize)errProviderTablename).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -55,11 +55,16 @@ namespace SEP
             dataGridView1.DataSource = dataTable;
         }
 
-        private void button2_Enter(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             AddNewDocument addNewDocument = new AddNewDocument(collectionName);
             addNewDocument.ShowDialog();
             //this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
