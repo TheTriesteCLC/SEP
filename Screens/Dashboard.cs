@@ -20,6 +20,7 @@ namespace SEP
     {
         private IMongoDatabase database;
         private string collectionName;
+        private FilterDefinition<BsonDocument> chosenDocument;
 
         public Dashboard(string collectionName)
         {
@@ -70,19 +71,23 @@ namespace SEP
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             deleteBtn.Enabled = true;
-            //var documentId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            var documentId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-            //var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(documentId));
-            //var result = this.database.GetCollection<BsonDocument>(collectionName).DeleteOne(filter);
+            this.chosenDocument = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(documentId));
+        }
 
-            //if (result.DeletedCount > 0)
-            //{
-            //    MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            var result = this.database.GetCollection<BsonDocument>(collectionName).DeleteOne(this.chosenDocument);
+
+            if (result.DeletedCount > 0)
+            {
+                MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

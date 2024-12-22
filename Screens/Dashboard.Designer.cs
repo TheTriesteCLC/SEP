@@ -82,6 +82,7 @@
             deleteBtn.TabIndex = 3;
             deleteBtn.Text = "Delete\r\n";
             deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // dataGridView1
             // 
