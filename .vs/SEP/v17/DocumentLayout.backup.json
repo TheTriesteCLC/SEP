@@ -7,8 +7,12 @@
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Dashboard.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.Designer.cs",
-              "RelativeDocumentMoniker": "Screens\\Dashboard.Designer.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.Designer.cs",
-              "RelativeToolTip": "Screens\\Dashboard.Designer.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAcwDwAAAAqAAAAAAAAAA==",
+              "Title": "TableList.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\TableList.cs",
+              "RelativeDocumentMoniker": "Screens\\TableList.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\TableList.cs",
+              "RelativeToolTip": "Screens\\TableList.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowDUAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T11:13:46.125Z",
+              "WhenOpened": "2024-12-22T11:42:00.56Z",
               "EditorCaption": ""
             },
             {
@@ -45,10 +49,22 @@
               "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
               "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.cs",
               "RelativeToolTip": "Screens\\Dashboard.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAvwDgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowFAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T11:12:32.543Z",
+              "WhenOpened": "2024-12-22T11:28:50.151Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Screens\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T11:28:38.384Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

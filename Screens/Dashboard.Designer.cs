@@ -31,7 +31,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
+            deleteBtn = new Button();
             dataGridView1 = new DataGridView();
             button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -71,16 +71,17 @@
             button3.Text = "Update";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // deleteBtn
             // 
-            button4.Cursor = Cursors.Hand;
-            button4.Location = new Point(607, 9);
-            button4.Margin = new Padding(3, 2, 3, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(82, 22);
-            button4.TabIndex = 3;
-            button4.Text = "Delete\r\n";
-            button4.UseVisualStyleBackColor = true;
+            deleteBtn.Cursor = Cursors.Hand;
+            deleteBtn.Enabled = false;
+            deleteBtn.Location = new Point(607, 9);
+            deleteBtn.Margin = new Padding(3, 2, 3, 2);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(82, 22);
+            deleteBtn.TabIndex = 3;
+            deleteBtn.Text = "Delete\r\n";
+            deleteBtn.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -91,6 +92,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(679, 293);
             dataGridView1.TabIndex = 4;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // button5
             // 
@@ -111,7 +113,7 @@
             ClientSize = new Size(700, 338);
             Controls.Add(button5);
             Controls.Add(dataGridView1);
-            Controls.Add(button4);
+            Controls.Add(deleteBtn);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -128,7 +130,7 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private Button button4;
+        private Button deleteBtn;
         private DataGridView dataGridView1;
         private Button button5;
     }
