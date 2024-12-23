@@ -35,20 +35,27 @@ namespace SEP
             var documents = collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
 
             DataTable dataTable = new DataTable();
+
+            // Dynamically add columns based on all document fields
             foreach (var doc in documents)
             {
-                if (dataTable.Columns.Count == 0)
+                foreach (var element in doc.Elements)
                 {
-                    foreach (var element in doc.Elements)
+                    if (!dataTable.Columns.Contains(element.Name))
                     {
                         dataTable.Columns.Add(element.Name);
                     }
                 }
+            }
 
+            // Add rows with "BLANK" for non-existing fields
+            foreach (var doc in documents)
+            {
                 var row = new object[dataTable.Columns.Count];
                 for (int i = 0; i < dataTable.Columns.Count; i++)
                 {
-                    row[i] = doc[dataTable.Columns[i].ColumnName].ToString();
+                    string columnName = dataTable.Columns[i].ColumnName;
+                    row[i] = doc.Contains(columnName) ? doc[columnName].ToString() : "#BLANK";
                 }
                 dataTable.Rows.Add(row);
             }
@@ -78,15 +85,21 @@ namespace SEP
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            var result = this.database.GetCollection<BsonDocument>(collectionName).DeleteOne(this.chosenDocument);
+            var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
 
-            if (result.DeletedCount > 0)
-            {
-                MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var result = this.database.GetCollection<BsonDocument>(collectionName).DeleteOne(this.chosenDocument);
+                if (result.DeletedCount > 0)
+                {
+                    MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }
