@@ -121,13 +121,27 @@ namespace SEP
                     documentData[columnName] = cellValue;
                 }
 
-                // Mở form chỉnh sửa
-                DetailDocument updateForm = new DetailDocument(documentData, true, updatedData =>
-                {
-                    // Cập nhật MongoDB
-                    // code here
+                var originalData = new Dictionary<string, string>(documentData);
 
-                    // Load lại dữ liệu
+                DetailDocument updateForm = new DetailDocument(documentData, true, (updatedData) =>
+                {
+                    // get updated data
+                    var newDoc = updatedData.ToBsonDocument();
+                    newDoc.RemoveElement(newDoc.GetElement("_id"));
+
+                    var updateDefinition = new List<UpdateDefinition<BsonDocument>>();
+                    foreach (var dataField in newDoc) {
+                        updateDefinition.Add(Builders<BsonDocument>.Update.Set(dataField.Name, dataField.Value));
+                    }
+                    var combinedUpdate = Builders<BsonDocument>.Update.Combine(updateDefinition);
+
+                    // add filter
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(originalData["_id"]));
+                    // and update
+                    var collection = database.GetCollection<BsonDocument>(collectionName);
+                    var result = collection.UpdateOne(filter, combinedUpdate);
+
+                    // resolve UI
                     LoadCollectionData();
                 });
                 updateForm.ShowDialog();
