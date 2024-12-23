@@ -78,7 +78,7 @@ namespace SEP
                 }
 
                 // Mở form chỉ đọc
-                DetailDocument viewForm = new DetailDocument(documentData, false, null);
+                DetailDocument viewForm = new DetailDocument(documentData, false, null, null);
                 viewForm.ShowDialog();
             }
             else
@@ -123,7 +123,7 @@ namespace SEP
 
                 var originalData = new Dictionary<string, string>(documentData);
 
-                DetailDocument updateForm = new DetailDocument(documentData, true, (updatedData) =>
+                DetailDocument updateForm = new DetailDocument(documentData, true, updatedData =>
                 {
                     // get updated data
                     var newDoc = updatedData.ToBsonDocument();
@@ -142,6 +142,10 @@ namespace SEP
                     var result = collection.UpdateOne(filter, combinedUpdate);
 
                     // resolve UI
+                    LoadCollectionData();
+                }, curDocData =>
+                {
+                    curDocData = new Dictionary<string, string>(originalData);
                     LoadCollectionData();
                 });
                 updateForm.ShowDialog();

@@ -15,24 +15,28 @@ namespace SEP.Screens
         private Dictionary<string, string> documentData;
         private bool isEditable;
         private Action<Dictionary<string, string>> onSave;
-        public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback)
+        private Action<Dictionary<string, string>> onCancel;
+        public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback, Action<Dictionary<string, string>> onCancelCallback)
         {
             InitializeComponent();
             documentData = data;
             isEditable = editable;
             onSave = onSaveCallback;
+            onCancel = onCancelCallback;
             LoadDocumentData();
             if (isEditable)
             {
                 // Cho phép chỉnh sửa nếu cần
                 dataGridView1.ReadOnly = false;
                 button1.Visible = true;
+                button2.Visible = true;
             }
             else
             {
                 // Không cho phép chỉnh sửa
                 dataGridView1.ReadOnly = true;
                 button1.Visible = false;
+                button2.Visible = false;
             }
             ConfigureDataGridView();
         }
@@ -82,7 +86,6 @@ namespace SEP.Screens
         }
 
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (isEditable)
@@ -107,7 +110,31 @@ namespace SEP.Screens
                     onSave(documentData);
                 }
 
-                this.Close();
+                //this.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (isEditable)
+            {
+                // Gọi callback lưu dữ liệu
+                if (onCancel != null)
+                {
+                    onCancel(documentData);
+
+                    // Loop through all columns of the selected row
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
+                    }
+
+                    dataGridView1.Update();
+                    dataGridView1.Refresh();
+                }
+
+                //this.Close();
             }
         }
 
