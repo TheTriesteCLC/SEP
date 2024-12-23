@@ -10,6 +10,9 @@
     <Compile Update="Screens\AddNewTable.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Screens\DetailDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Screens\TableList.cs">
       <SubType>Form</SubType>
     </Compile>

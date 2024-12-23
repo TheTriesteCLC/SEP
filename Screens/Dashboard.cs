@@ -63,6 +63,30 @@ namespace SEP
             dataGridView1.DataSource = dataTable;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                Dictionary<string, string> documentData = new Dictionary<string, string>();
+
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    string columnName = dataGridView1.Columns[cell.ColumnIndex].HeaderText;
+                    string cellValue = cell.Value?.ToString() ?? string.Empty;
+                    documentData[columnName] = cellValue;
+                }
+
+                // Mở form chỉ đọc
+                DetailDocument viewForm = new DetailDocument(documentData, false, null);
+                viewForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a document to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             AddNewDocument addNewDocument = new AddNewDocument(collectionName);
@@ -83,6 +107,38 @@ namespace SEP
             this.chosenDocument = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(documentId));
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                Dictionary<string, string> documentData = new Dictionary<string, string>();
+
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    string columnName = dataGridView1.Columns[cell.ColumnIndex].HeaderText;
+                    string cellValue = cell.Value?.ToString() ?? string.Empty;
+                    documentData[columnName] = cellValue;
+                }
+
+                // Mở form chỉnh sửa
+                DetailDocument updateForm = new DetailDocument(documentData, true, updatedData =>
+                {
+                    // Cập nhật MongoDB
+                    // code here
+
+                    // Load lại dữ liệu
+                    LoadCollectionData();
+                });
+                updateForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a document to update.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
@@ -101,6 +157,11 @@ namespace SEP
                     MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

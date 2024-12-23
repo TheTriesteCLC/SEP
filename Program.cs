@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -16,21 +16,30 @@ namespace SEP
         {
             //try
             //{
-            //    SqlConnection con = new SqlConnection(Constants.testSQLConenctionString);
+
+            //    Microsoft.Data.SqlClient.SqlConnection con = new Microsoft.Data.SqlClient.SqlConnection(Constants.testSQLConenctionString);
             //    con.Open();
+
             //    List<string> result = new List<string>();
-            //    SqlCommand cmd = new SqlCommand("SELECT name FROM sys.Tables", con);
-            //    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+            //    Microsoft.Data.SqlClient.SqlCommand cmd = new Microsoft.Data.SqlClient.SqlCommand("SELECT name FROM sys.Tables", con);
+            //    Microsoft.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+
             //    while (reader.Read())
+            //    {
             //        result.Add(reader["name"].ToString());
+            //    }
             //    reader.Close();
 
             //    foreach (string s in result)
             //    {
             //        System.Diagnostics.Debug.WriteLine(s);
+
+            //        // Sử dụng GetSchema từ SqlConnection để lấy schema tables
             //        DataTable t = con.GetSchema("Tables");
             //        DisplayData(t);
             //    }
+
+
             //}
             //catch (Exception ex)
             //{
