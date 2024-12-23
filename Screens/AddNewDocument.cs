@@ -21,7 +21,6 @@ namespace SEP.Screens
     {
         private IMongoDatabase database;
         private string collectionName;
-        private CustomClass schema;
         private List<(string PropertyName, Type PropertyType)> initFields;
 
         private List<FieldUI> fieldUIList;
@@ -33,7 +32,6 @@ namespace SEP.Screens
             this.collectionName = collectionName;
             labelCollectionName.Text = collectionName;
             this.initFields = GetCollectionFields();
-            //this.schema = new CustomClass(collectionName, fields);
 
             fieldUIList = new List<FieldUI>();
         }
@@ -119,8 +117,46 @@ namespace SEP.Screens
                 if (deleteIndex != -1)
                 {
                     RemoveRow(deleteIndex + 1);
-                    System.Diagnostics.Debug.WriteLine(deleteIndex);
                     fieldUIList.RemoveAt(deleteIndex);
+                }
+            };
+
+            newFieldUI.dataInput.Validating += (s, e) =>
+            {
+                bool isValidated = newFieldUI.validateDataInput();
+                if (!isValidated)
+                {
+                    this.buttonAdd.Enabled = false;
+                } else
+                {
+                    this.buttonAdd.Enabled = true;
+                }
+            };
+
+            newFieldUI.typeComboBox.SelectedIndexChanged += (s, e) =>
+            {
+                bool isValidated = newFieldUI.validateDataInput();
+                if (!isValidated)
+                {
+                    this.buttonAdd.Enabled = false;
+                }
+                else
+                {
+                    this.buttonAdd.Enabled = true;
+                }
+            };
+
+            newFieldUI.nameInput.Validating += (s, e) =>
+            {
+                if (newFieldUI.nameInput.Text == "")
+                {
+                    this.buttonAdd.Enabled = false;
+                    newFieldUI.errorName.SetError(newFieldUI.nameInput, "Field name must not be blank");
+                }
+                else
+                {
+                    this.buttonAdd.Enabled = true;
+                    newFieldUI.errorName.SetError(newFieldUI.nameInput, "");
                 }
             };
         }
@@ -198,6 +234,8 @@ namespace SEP.Screens
         public TextBox nameInput;
         public ComboBox typeComboBox;
         public TextBox dataInput;
+        public ErrorProvider errorType;
+        public ErrorProvider errorName;
 
         public FieldUI(Type fieldType, string fieldName = "")
         {
@@ -222,9 +260,13 @@ namespace SEP.Screens
 
             this.typeComboBox = new ComboBox
             {
-                Width = 200,
+                Width = 150,
                 Anchor = AnchorStyles.Top,
             };
+
+            this.errorType = new ErrorProvider();
+            this.errorName = new ErrorProvider();
+            
 
             foreach (Type type in Constants.supportedType)
             {
@@ -235,9 +277,84 @@ namespace SEP.Screens
 
             this.dataInput = new TextBox
             {
-                Width = 200,
-                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+                Width = 325,
+                Anchor = AnchorStyles.Left | AnchorStyles.Top,
             };
+        }
+        public bool validateDataInput()
+        {
+            Type selectedType = Constants.supportedType[this.typeComboBox.SelectedIndex];
+            string data = this.dataInput.Text;
+
+            // Clear any previous error
+            this.errorType.SetError(this.dataInput, "");
+
+            //if (string.IsNullOrWhiteSpace(data))
+            //{
+            //    this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
+            //    return false;
+            //}
+            //if (selectedType == null)
+            //{
+            //    return false;
+            //}
+
+            try
+            {
+                // Validate based on the selected type
+                if (selectedType == typeof(int))
+                {
+                    int.Parse(data);
+                }
+                else if (selectedType == typeof(long))
+                {
+                    long.Parse(data);
+                }
+                else if (selectedType == typeof(decimal))
+                {
+                    decimal.Parse(data);
+                }
+                else if (selectedType == typeof(double))
+                {
+                    double.Parse(data);
+                }
+                else if (selectedType == typeof(string))
+                {
+                    // Strings are always valid, but you can add custom rules
+                    return true;
+                }else if (selectedType == typeof(bool))
+                {
+                    try
+                    {
+                        if (!Constants.booleanTypeValidation.Contains(data))
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorType.SetError(dataInput, $"Value must be 'true'/'false'");
+                        return false;
+                    }
+                }else if(selectedType == typeof(DateTime))
+                {
+                    try
+                    {
+                        DateTime.Parse(data);
+                    }catch(Exception ex)
+                    {
+                        errorType.SetError(dataInput, $"Date format must be MM/DD/YYYY");
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errorType.SetError(dataInput, $"Invalid {typeComboBox.SelectedItem?.ToString()} value");
+                return false;
+            }
+            errorType.SetError(dataInput, "");
+            return true;
         }
     }
 }

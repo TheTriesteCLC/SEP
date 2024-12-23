@@ -18,19 +18,31 @@ namespace SEP
         {
             typeof(double),      // BsonType.Double
             typeof(string),      // BsonType.String
+            typeof(bool),        // BsonType.Boolean
+            typeof(DateTime),    // BsonType.DateTime
+            typeof(int),         // BsonType.Int32
+            typeof(long),        // BsonType.Int64
+            typeof(decimal),     // BsonType.Decimal128
+        };
+        public static readonly List<Type> unsupportedType = new List<Type>
+        {
             typeof(BsonDocument),// BsonType.Document
             typeof(BsonArray),   // BsonType.Array
             typeof(byte[]),      // BsonType.Binary
             typeof(ObjectId),    // BsonType.ObjectId
-            typeof(bool),        // BsonType.Boolean
-            typeof(DateTime),    // BsonType.DateTime
             typeof(DBNull),      // BsonType.Null
-            typeof(int),         // BsonType.Int32
-            typeof(long),        // BsonType.Int64
-            typeof(decimal),     // BsonType.Decimal128
             typeof(object),      // BsonType.MinKey
             typeof(object),      // BsonType.MaxKey
             typeof(object)       // BsonType.Undefined
+        };
+        public static readonly List<string> booleanTypeValidation = new List<string>
+        {
+            "true",
+            "false",
+            "True",
+            "False",
+            "TRUE",
+            "FALSE"
         };
     }
 }

@@ -68,10 +68,62 @@ namespace SEP.CustomClassBuilder
             this.newType = CreateNewClass(className, properties);
             this.instance = Activator.CreateInstance(newType);
         }
-        public void setProp(string name, string value) 
+        public void setProp(string name, string value)
         {
-            newType.GetProperty(name).SetValue(instance, value);
+            var property = newType.GetProperty(name);
+            if (property == null)
+            {
+                throw new ArgumentException($"Property '{name}' does not exist on type '{newType.Name}'.");
+            }
+            var targetType = property.PropertyType;
+            if (targetType.IsGenericType && targetType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                targetType = Nullable.GetUnderlyingType(targetType);
+            }
+            object convertedValue = null;
+            try
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    if (targetType.IsValueType && Nullable.GetUnderlyingType(targetType) == null)
+                    {
+                        throw new InvalidCastException($"Cannot assign null or empty string to non-nullable type '{targetType.Name}'.");
+                    }
+                    convertedValue = null;
+                }
+                else
+                {
+                    if (targetType.IsEnum)
+                    {
+                        convertedValue = Enum.Parse(targetType, value);
+                    }
+                    else if (targetType == typeof(DateTime))
+                    {
+                        convertedValue = DateTime.Parse(value);
+                    }
+                    else if (targetType == typeof(bool))
+                    {
+                        if(value == "true")
+                        {
+                            convertedValue = true;
+                        }else
+                        {
+                            convertedValue = false;
+                        }
+                    }
+                    else
+                    {
+                        convertedValue = Convert.ChangeType(value, targetType);
+                    }
+                }
+                property.SetValue(instance, convertedValue);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidCastException($"Cannot convert value '{value}' to type '{targetType.Name}'.", ex);
+            }
         }
+
         public object getProp(string name)
         {
             return newType.GetProperty(name).GetValue(instance);
