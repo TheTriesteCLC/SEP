@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SEP.Interfaces;
+using SEP.Observers;
 
 namespace SEP.Screens
 {
@@ -16,6 +9,8 @@ namespace SEP.Screens
         private bool isEditable;
         private Action<Dictionary<string, string>> onSave;
         private Action<Dictionary<string, string>> onCancel;
+        public DocumentDetailManager documentDetailManager;
+
         public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback, Action<Dictionary<string, string>> onCancelCallback)
         {
             InitializeComponent();
@@ -23,6 +18,8 @@ namespace SEP.Screens
             isEditable = editable;
             onSave = onSaveCallback;
             onCancel = onCancelCallback;
+            documentDetailManager = new DocumentDetailManager();
+
             LoadDocumentData();
             if (isEditable)
             {
@@ -108,6 +105,8 @@ namespace SEP.Screens
                 if (onSave != null)
                 {
                     onSave(documentData);
+                    // Notify that the data has been updated
+                    documentDetailManager.NotifyObservers();
                 }
 
                 //this.Close();

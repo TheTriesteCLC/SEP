@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SEP.CustomClassBuilder;
 using SEP.Screens;
 using SEP.CurrUser;
+using SEP.Interfaces;
 
 namespace SEP
 {
-    public partial class Dashboard : Form
+    public partial class Dashboard : Form, IDocumentObserver
     {
         private IMongoDatabase database;
         private string collectionName;
@@ -26,8 +17,10 @@ namespace SEP
         {
             InitializeComponent();
             database = CurrUserInfo.getUserDB();
+
             this.collectionName = collectionName;
             LoadCollectionData();
+
         }
         private void LoadCollectionData()
         {
@@ -142,12 +135,11 @@ namespace SEP
                     var result = collection.UpdateOne(filter, combinedUpdate);
 
                     // resolve UI
-                    LoadCollectionData();
                 }, curDocData =>
                 {
                     curDocData = new Dictionary<string, string>(originalData);
-                    LoadCollectionData();
                 });
+                updateForm.documentDetailManager.RegisterObserver(this);
                 updateForm.ShowDialog();
             }
             else
@@ -180,6 +172,12 @@ namespace SEP
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        public void Update()
+        {
+            System.Diagnostics.Debug.WriteLine("Notified from subscription");
+            LoadCollectionData();
         }
     }
 }
