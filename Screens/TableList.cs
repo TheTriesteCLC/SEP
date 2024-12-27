@@ -27,7 +27,7 @@ namespace SEP
         }
         private void LoadCollections()
         {
-            var collections = CurrUserInfo.getUserDB().ListCollectionNames().ToList();
+            var collections = database.ListCollectionNames().ToList();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Table Name");
 

@@ -166,7 +166,6 @@ namespace SEP
             string connectionString = txtConnection.Text;
             if (ConnectionHelper.IsValidMongoDBConnection(connectionString))
             {
-                System.Diagnostics.Debug.WriteLine("connect");
                 comboboxDatabase.Visible = true;
 
                 MongoClient mongoClient = new MongoClient(connectionString);

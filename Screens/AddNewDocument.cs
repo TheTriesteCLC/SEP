@@ -211,12 +211,8 @@ namespace SEP.Screens
                 newDocument.setProp(fieldUI.nameInput.Text, fieldUI.dataInput.Text);
             }
 
-
-            var client = new MongoClient(Constants.connectionString);
-            var database1 = client.GetDatabase(Constants.mainDBString);
-            var collection1 = database1.GetCollection<BsonDocument>(collectionName);
-
-            collection1.InsertOne(newDocument.ToBsonDocument());
+            var collection = database.GetCollection<BsonDocument>(collectionName);
+            collection.InsertOne(newDocument.ToBsonDocument());
 
             System.Windows.Forms.MessageBox.Show($"Add new document to '{collectionName}'!");
             ClearTableLayoutPanel();
