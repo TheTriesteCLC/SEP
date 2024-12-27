@@ -77,6 +77,8 @@ namespace SEP
         private void button2_Click(object sender, EventArgs e)
         {
             AddNewDocument addNewDocument = new AddNewDocument(collectionName);
+
+            addNewDocument.registerObserver(this);
             addNewDocument.ShowDialog();
             //this.Close();
         }
@@ -125,6 +127,7 @@ namespace SEP
                 if (result.DeletedCount > 0)
                 {
                     MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadCollectionData();
                 }
                 else
                 {

@@ -4,6 +4,8 @@ using MongoDB.Driver;
 using SEP.CurrUser;
 using SEP.CustomClassBuilder;
 using SEP.DBManagement;
+using SEP.Interfaces;
+using SEP.Observers;
 using SEP.Ultils;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,7 @@ namespace SEP.Screens
         private List<(string PropertyName, Type PropertyType)> initFields;
 
         private List<FieldUI> fieldUIList;
+        private DocumentDetailManager addNewDocumentManager;
 
         public AddNewDocument(string collectionName)
         {
@@ -33,7 +36,16 @@ namespace SEP.Screens
             labelCollectionName.Text = collectionName;
             this.initFields = GetCollectionFields();
 
-            fieldUIList = new List<FieldUI>();
+            this.fieldUIList = new List<FieldUI>();
+            this.addNewDocumentManager = new DocumentDetailManager();
+        }
+        public void registerObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewDocumentManager.RegisterObserver(documentObserver);
+        }
+        public void unregisterObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewDocumentManager.UnregisterObserver(documentObserver);
         }
 
         private List<(string PropertyName, Type PropertyType)> GetCollectionFields()
@@ -215,6 +227,8 @@ namespace SEP.Screens
             collection.InsertOne(newDocument.ToBsonDocument());
 
             System.Windows.Forms.MessageBox.Show($"Add new document to '{collectionName}'!");
+
+            this.addNewDocumentManager.NotifyObservers();
             ClearTableLayoutPanel();
         }
 

@@ -128,12 +128,10 @@ namespace SEP.Screens
 
             this.documentDetailManager.NotifyObservers();
         }
-
         public void registerObserver(IDocumentObserver documentObserver)
         {
             this.documentDetailManager.RegisterObserver(documentObserver);
         }
-
         public void unregisterObserver(IDocumentObserver documentObserver)
         {
             this.documentDetailManager.UnregisterObserver(documentObserver);
@@ -148,26 +146,7 @@ namespace SEP.Screens
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //if (isEditable)
-            //{
-            //    // Gọi callback lưu dữ liệu
-            //    if (onCancel != null)
-            //    {
-            //        onCancel(documentData);
-
-            //        // Loop through all columns of the selected row
-            //        for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            //        {
-            //            var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
-            //            dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
-            //        }
-
-            //        dataGridView1.Update();
-            //        dataGridView1.Refresh();
-            //    }
-
-            //    //this.Close();
-            //}
+            this.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

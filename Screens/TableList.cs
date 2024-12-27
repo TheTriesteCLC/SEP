@@ -12,10 +12,11 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
 using SEP.CurrUser;
+using SEP.Interfaces;
 
 namespace SEP
 {
-    public partial class TableList : Form
+    public partial class TableList : Form, IDocumentObserver
     {
         private IMongoDatabase database;
 
@@ -45,8 +46,6 @@ namespace SEP
 
             dataGridView1.RowTemplate.Height = 30;
         }
-
-
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -56,11 +55,16 @@ namespace SEP
                 dataForm.ShowDialog(); // Hiển thị form mới
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             AddNewTable newTable = new AddNewTable();
+            newTable.registerObserver(this);
             newTable.ShowDialog();
+        }
+        public void Update()
+        {
+            System.Diagnostics.Debug.WriteLine("Notified from subscription");
+            LoadCollections();
         }
     }
 }
