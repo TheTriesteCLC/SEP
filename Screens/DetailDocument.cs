@@ -19,9 +19,9 @@ namespace SEP.Screens
         private string documentId;
         private bool editable;
 
-        IMongoDatabase database;
+        IDatabase database;
         private DocumentDetailManager documentDetailManager;
-        private List<(string PropertyName, Type PropertyType)> fields;
+        private List<(string PropertyName, Type PropertyType, string PropertyValue)> fields;
 
         public DetailDocument(string collectionName, string documentId, bool editable)
         {
@@ -32,10 +32,10 @@ namespace SEP.Screens
 
             this.database = CurrUserInfo.getUserDB();
             this.documentDetailManager = new DocumentDetailManager();
-            this.fields = new List<(string PropertyName, Type PropertyType)>();
+            this.fields = new List<(string PropertyName, Type PropertyType, string PropertyValue)>();
 
             LoadDocumentData();
-            if (editable)
+            if (this.editable)
             {
                 // Cho phép chỉnh sửa
                 dataGridView1.ReadOnly = false;
@@ -73,7 +73,7 @@ namespace SEP.Screens
             dataGridView1.Columns[2].DefaultCellStyle = valueCellStyle;
 
         }
-        private void LoadDocumentData()
+        private async void LoadDocumentData()
         {
             // Xóa dữ liệu cũ (nếu có)
             dataGridView1.Columns.Clear();
@@ -84,25 +84,23 @@ namespace SEP.Screens
             dataGridView1.Columns.Add("FieldType", "Type");
             dataGridView1.Columns.Add("FieldValue", "Value");
 
-            var collection = database.GetCollection<BsonDocument>(this.collectionName);
-            var document = collection.Find(
-                Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(this.documentId))).FirstOrDefault();
+            dbDocument foundDocument = (await this.database.GetDocumentByID(collectionName, this.documentId));
+            this.fields = foundDocument.toDocumentList();
             // Thêm dữ liệu
-            foreach (var element in document)
+            foreach (var field in this.fields)
             {
-                if (editable && element.Name == "_id")
+                if (editable && field.PropertyName == "_id")
                 {
                     continue;
                 }
-                fields.Add((element.Name, BsonHelper.BsonTypeToSystemType(element.Value.BsonType)));
-                dataGridView1.Rows.Add(element.Name, BsonHelper.BsonTypeToSystemType(element.Value.BsonType), document[element.Name].ToString());
+                dataGridView1.Rows.Add(field.PropertyName, field.PropertyType.ToString(), field.PropertyValue);
             }
 
             // Thiết lập chế độ chỉnh sửa
             dataGridView1.ReadOnly = !editable;
             dataGridView1.AllowUserToAddRows = false; // Không cho phép thêm hàng
         }
-        private void handleUpdateDocument()
+        private async Task<dbResponse> handleUpdateDocument()
         {
             CustomClass newDocument = new CustomClass(collectionName, this.fields);
             try
@@ -120,13 +118,7 @@ namespace SEP.Screens
                 this.label1.Visible = true;
             }
 
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var result = collection.ReplaceOne(
-                Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(this.documentId)),
-                newDocument.ToBsonDocument());
-            MessageBox.Show("Data has been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            this.documentDetailManager.NotifyObservers();
+            return await this.database.UpdateDocumentByID(collectionName, this.documentId, newDocument);
         }
         public void registerObserver(IDocumentObserver documentObserver)
         {
@@ -136,11 +128,14 @@ namespace SEP.Screens
         {
             this.documentDetailManager.UnregisterObserver(documentObserver);
         }
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (editable)
             {
-                handleUpdateDocument();
+                dbResponse result = await handleUpdateDocument();
+                MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.documentDetailManager.NotifyObservers();
             }
         }
 
@@ -246,6 +241,6 @@ namespace SEP.Screens
             return true;
         }
 
-        
+
     }
 }

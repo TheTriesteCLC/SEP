@@ -6,7 +6,7 @@ namespace SEP.Interfaces
     {
         Task<List<dbCollection>> GetAllCollections();
         Task<dbResponse> CreateNewCollection(string collectionName);
-        Task<dbCollection> GetCollection(string collectionName);
+        Task<List<dbDocument>> GetCollection(string collectionName);
         Task<dbDocument> GetDocumentByID(string collectionName, string id);
         Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject);
         Task<dbSchema> GetCollectionSchema(string collectionName);
@@ -54,6 +54,15 @@ namespace SEP.Interfaces
             this.fields = fields;
         }
         public dbDocument() { }
+        public dbDocumentField getFieldByName(string fieldName)
+        {
+            return fields.Find(field =>  field.fieldName == fieldName);
+        }
+        public List<(string PropertyName, Type PropertyType, string PropertyValue)> toDocumentList()
+        {
+            return fields?.Select(field => (field.fieldName, field.type, field.value)).ToList()
+                ?? new List<(string, Type, string)>();
+        }
     }
     public class dbSchemaField
     {
@@ -77,5 +86,10 @@ namespace SEP.Interfaces
             this.fields = fields; 
         }
         public dbSchema() { }
+        public List<(string PropertyName, Type PropertyType)> toSchemaList()
+        {
+            return fields?.Select(field => (field.name, field.type)).ToList() 
+                ?? new List<(string, Type)>();
+        }
     }
 }

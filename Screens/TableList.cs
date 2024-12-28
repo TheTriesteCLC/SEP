@@ -18,7 +18,7 @@ namespace SEP
 {
     public partial class TableList : Form, IDocumentObserver
     {
-        private IMongoDatabase database;
+        private IDatabase database;
 
         public TableList()
         {
@@ -26,15 +26,15 @@ namespace SEP
             database = CurrUserInfo.getUserDB();
             LoadCollections();
         }
-        private void LoadCollections()
+        private async void LoadCollections()
         {
-            var collections = database.ListCollectionNames().ToList();
+            List<dbCollection> collections = await database.GetAllCollections();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Table Name");
 
             foreach (var collection in collections)
             {
-                dataTable.Rows.Add(collection);
+                dataTable.Rows.Add(collection.collectionName);
             }
 
             dataGridView1.DataSource = dataTable;

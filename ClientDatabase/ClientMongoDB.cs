@@ -5,19 +5,21 @@ using System;
 using MongoDB.Bson;
 using SEP.Ultils;
 using SEP.CustomClassBuilder;
+using System.Xml.Linq;
 
 namespace SEP.ClientDatabase
 {
     internal class ClientMongoDB : IDatabase
     {
-        private string conenctionString;
+        private string connectionString;
         private string databaseName;
         private IMongoDatabase database;
-        ClientMongoDB(string conenctionString)
+        public ClientMongoDB(string connectionString, string databaseName)
         {
-            this.conenctionString = conenctionString;
-            MongoClient dbClient = new MongoClient(this.conenctionString);
-            this.database = dbClient.GetDatabase(databaseName);
+            this.connectionString = connectionString;
+            MongoClient dbClient = new MongoClient(this.connectionString);
+            this.databaseName = databaseName;
+            this.database = dbClient.GetDatabase(this.databaseName);
         }
 
         public async Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject)
@@ -71,11 +73,23 @@ namespace SEP.ClientDatabase
             return dbCollections;
         }
 
-        public async Task<dbCollection> GetCollection(string collectionName)
+        public async Task<List<dbDocument>> GetCollection(string collectionName)
         {
             var collection = database.GetCollection<BsonDocument>(collectionName);
             var documents = await collection.Find(new BsonDocument()).ToListAsync();
-            return new dbCollection(collectionName);
+            List<dbDocument> dbDocuments = new List<dbDocument>();
+            foreach(var document in documents)
+            {
+                List<dbDocumentField> fields = new List<dbDocumentField>();
+                foreach (var element in document.Elements)
+                {
+                    fields.Add(new dbDocumentField(
+                        element.Name, element.Value.ToString(), 
+                        BsonHelper.BsonTypeToSystemType(element.Value.BsonType)));
+                }
+                dbDocuments.Add(new dbDocument(fields));
+            }
+            return dbDocuments;
         }
 
         public async Task<dbSchema> GetCollectionSchema(string collectionName)
@@ -87,10 +101,13 @@ namespace SEP.ClientDatabase
             {
                 foreach (var element in doc.Elements)
                 {
-                    var newField = new dbSchemaField(element.Name, BsonHelper.BsonTypeToSystemType(element.Value.BsonType));
-                    if (!schemaFields.Any(x => x.name == newField.name))
+                    if(element.Name != "_id")
                     {
-                        schemaFields.Add(newField);
+                        var newField = new dbSchemaField(element.Name, BsonHelper.BsonTypeToSystemType(element.Value.BsonType));
+                        if (!schemaFields.Any(x => x.name == newField.name))
+                        {
+                            schemaFields.Add(newField);
+                        }
                     }
                 }
             }
@@ -104,14 +121,11 @@ namespace SEP.ClientDatabase
             var document = await collection.Find(filter).FirstOrDefaultAsync();
 
             List<dbDocumentField> fields = new List<dbDocumentField>();
-            foreach(var field in document)
+            foreach(var element in document.Elements)
             {
-                foreach (var element in document.Elements)
-                {
-                    fields.Add(new dbDocumentField(element.Name, 
-                        element.Value.ToString(), 
+                fields.Add(new dbDocumentField(element.Name,
+                        element.Value.ToString(),
                         BsonHelper.BsonTypeToSystemType(element.Value.BsonType)));
-                }
             }
             return new dbDocument(fields);
         }

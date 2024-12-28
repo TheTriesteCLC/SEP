@@ -9,9 +9,9 @@ namespace SEP
 {
     public partial class Dashboard : Form, IDocumentObserver
     {
-        private IMongoDatabase database;
+        private IDatabase database;
         private string collectionName;
-        private FilterDefinition<BsonDocument> chosenDocument;
+        private string chosenDocumentId;
 
         public Dashboard(string collectionName)
         {
@@ -22,21 +22,20 @@ namespace SEP
             LoadCollectionData();
 
         }
-        private void LoadCollectionData()
+        private async void LoadCollectionData()
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var documents = collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
+            List<dbDocument> documents = await database.GetCollection(collectionName);
 
             DataTable dataTable = new DataTable();
 
             // Dynamically add columns based on all document fields
             foreach (var doc in documents)
             {
-                foreach (var element in doc.Elements)
+                foreach (var field in doc.fields)
                 {
-                    if (!dataTable.Columns.Contains(element.Name))
+                    if (!dataTable.Columns.Contains(field.fieldName))
                     {
-                        dataTable.Columns.Add(element.Name);
+                        dataTable.Columns.Add(field.fieldName);
                     }
                 }
             }
@@ -48,14 +47,24 @@ namespace SEP
                 for (int i = 0; i < dataTable.Columns.Count; i++)
                 {
                     string columnName = dataTable.Columns[i].ColumnName;
-                    row[i] = doc.Contains(columnName) ? doc[columnName].ToString() : "#BLANK";
+                    dbDocumentField foundField = doc.getFieldByName(columnName);
+                    if (foundField != null)
+                    {
+                        row[i] = foundField.value.ToString();
+                    }
+                    else
+                    {
+                        row[i] = "#BLANK";
+                    }
                 }
                 dataTable.Rows.Add(row);
             }
-
             dataGridView1.DataSource = dataTable;
         }
-
+        private async Task<dbResponse> handleDeleteDocument(string id)
+        {
+            return await this.database.DeleteDocumentByID(collectionName, id);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -91,9 +100,7 @@ namespace SEP
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             deleteBtn.Enabled = true;
-            var documentId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-
-            this.chosenDocument = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(documentId));
+            this.chosenDocumentId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -115,7 +122,7 @@ namespace SEP
         }
 
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private async void deleteBtn_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
                                      "Confirm Delete!!",
@@ -123,16 +130,9 @@ namespace SEP
             if (confirmResult == DialogResult.Yes)
             {
 
-                var result = this.database.GetCollection<BsonDocument>(collectionName).DeleteOne(this.chosenDocument);
-                if (result.DeletedCount > 0)
-                {
-                    MessageBox.Show("Document deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadCollectionData();
-                }
-                else
-                {
-                    MessageBox.Show("No document found with the specified ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                dbResponse result = await this.database.DeleteDocumentByID(collectionName, this.chosenDocumentId);
+                MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCollectionData();
             }
         }
 

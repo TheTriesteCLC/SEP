@@ -11,8 +11,12 @@
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\customclassbuilder\\customclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:customclassbuilder\\customclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,34 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddNewDocument.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeToolTip": "Screens\\AddNewDocument.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAcwEgAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T02:52:01.322Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IDatabase.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
-              "RelativeToolTip": "Interfaces\\IDatabase.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAuwA0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T02:39:26.569Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -60,11 +38,50 @@
               "Title": "ClientMongoDB.cs",
               "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\ClientDatabase\\ClientMongoDB.cs",
               "RelativeDocumentMoniker": "ClientDatabase\\ClientMongoDB.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\ClientDatabase\\ClientMongoDB.cs",
-              "RelativeToolTip": "ClientDatabase\\ClientMongoDB.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAqwH8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\ClientDatabase\\ClientMongoDB.cs*",
+              "RelativeToolTip": "ClientDatabase\\ClientMongoDB.cs*",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAuwHwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T02:25:26.602Z",
+              "WhenOpened": "2024-12-28T09:17:22.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomClass.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\CustomClassBuilder\\CustomClass.cs",
+              "RelativeDocumentMoniker": "CustomClassBuilder\\CustomClass.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\CustomClassBuilder\\CustomClass.cs",
+              "RelativeToolTip": "CustomClassBuilder\\CustomClass.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAYwFAAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T09:03:01.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IDatabase.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
+              "RelativeToolTip": "Interfaces\\IDatabase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T08:55:46.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DetailDocument.cs",
+              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\DetailDocument.cs",
+              "RelativeDocumentMoniker": "Screens\\DetailDocument.cs",
+              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\DetailDocument.cs",
+              "RelativeToolTip": "Screens\\DetailDocument.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAcwFYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T08:47:45.388Z",
               "EditorCaption": ""
             }
           ]
