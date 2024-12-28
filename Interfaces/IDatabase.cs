@@ -63,6 +63,12 @@ namespace SEP.Interfaces
             return fields?.Select(field => (field.fieldName, field.type, field.value)).ToList()
                 ?? new List<(string, Type, string)>();
         }
+        public List<(string PropertyName, Type PropertyType, string PropertyValue)> toDocumentListWithoutID()
+        {
+            List<dbDocumentField> fieldsWithNoID = this.fields.Where(x => x.fieldName != "_id").ToList();
+            return fieldsWithNoID?.Select(field => (field.fieldName, field.type, field.value)).ToList()
+                ?? new List<(string, Type, string)>();
+        }
     }
     public class dbSchemaField
     {
@@ -88,7 +94,8 @@ namespace SEP.Interfaces
         public dbSchema() { }
         public List<(string PropertyName, Type PropertyType)> toSchemaList()
         {
-            return fields?.Select(field => (field.name, field.type)).ToList() 
+            List<dbSchemaField> fieldsWithNoID = this.fields.Where(x => x.name != "_id").ToList();
+            return fieldsWithNoID?.Select(field => (field.name, field.type)).ToList() 
                 ?? new List<(string, Type)>();
         }
     }

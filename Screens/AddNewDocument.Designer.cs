@@ -116,6 +116,7 @@
             // 
             buttonAdd.BackColor = SystemColors.Control;
             buttonAdd.Cursor = Cursors.Hand;
+            buttonAdd.Enabled = false;
             buttonAdd.FlatAppearance.BorderSize = 0;
             buttonAdd.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonAdd.ForeColor = SystemColors.ControlText;
@@ -125,7 +126,7 @@
             buttonAdd.TabIndex = 9;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = false;
-            buttonAdd.Click += button2_Click;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // labelCollectionName
             // 

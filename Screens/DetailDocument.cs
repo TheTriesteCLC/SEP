@@ -85,14 +85,16 @@ namespace SEP.Screens
             dataGridView1.Columns.Add("FieldValue", "Value");
 
             dbDocument foundDocument = (await this.database.GetDocumentByID(collectionName, this.documentId));
-            this.fields = foundDocument.toDocumentList();
+            if (!editable)
+            {
+                this.fields = foundDocument.toDocumentList();
+            }else
+            {
+                this.fields = foundDocument.toDocumentListWithoutID();
+            }
             // Thêm dữ liệu
             foreach (var field in this.fields)
             {
-                if (editable && field.PropertyName == "_id")
-                {
-                    continue;
-                }
                 dataGridView1.Rows.Add(field.PropertyName, field.PropertyType.ToString(), field.PropertyValue);
             }
 

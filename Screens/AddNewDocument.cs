@@ -201,8 +201,9 @@ namespace SEP.Screens
             {
                 addNewField(field.PropertyName, field.PropertyType);
             }
+            this.buttonAdd.Enabled = false;
         }
-        private async void button2_Click(object sender, EventArgs e)
+        private async void buttonAdd_Click(object sender, EventArgs e)
         {
             dbResponse result = await handleCreateNewDocument();
             System.Windows.Forms.MessageBox.Show(result.message);
@@ -277,15 +278,15 @@ namespace SEP.Screens
             // Clear any previous error
             this.errorType.SetError(this.dataInput, "");
 
-            //if (string.IsNullOrWhiteSpace(data))
-            //{
-            //    this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
-            //    return false;
-            //}
-            //if (selectedType == null)
-            //{
-            //    return false;
-            //}
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
+                return false;
+            }
+            if (selectedType == null)
+            {
+                return false;
+            }
 
             try
             {
