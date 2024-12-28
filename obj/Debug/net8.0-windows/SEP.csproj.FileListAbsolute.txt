@@ -168,3 +168,4 @@ C:\Users\thoma\Desktop\SEP\bin\Debug\net8.0-windows\runtimes\win-x64\native\Micr
 C:\Users\thoma\Desktop\SEP\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\thoma\Desktop\SEP\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 C:\Users\thoma\Desktop\SEP\obj\Debug\net8.0-windows\SEP.Screens.DetailDocument.resources
+C:\Users\thoma\Desktop\SEP\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
