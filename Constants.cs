@@ -13,7 +13,7 @@ namespace SEP
         public static readonly string mainDBString = "SEP";
         public static readonly string usersDBName = "Users";
 
-        public static readonly string testSQLConenctionString = $"data source=TrishVoltman;initial catalog={mainDBString};user id=sa;password=svcntt";
+        public static readonly string testSQLConenctionString = $"data source=TrishVoltman;initial catalog=master;user id=sa;password=svcntt";
         public static readonly List<Type> supportedType = new List<Type>
         {
             typeof(double),      // BsonType.Double
@@ -43,6 +43,11 @@ namespace SEP
             "False",
             "TRUE",
             "FALSE"
+        };
+        public static readonly Dictionary<string, string> sqlQuery = new Dictionary<string, string>
+        {
+            { "getDatabaseNames", "SELECT DISTINCT name FROM sys.databases" },
+            { "getAllTablesName", "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'" }
         };
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using SEP.DBManagement.UsersCollection;
 using SEP.Ultils;
+using System.Data.SqlClient;
 
 namespace SEP
 {
@@ -143,12 +144,6 @@ namespace SEP
                 txtConnection.Focus();
                 errProviderConnection.SetError(txtConnection, "Connection string should not be left blank!");
             }
-            else if (!txtConnection.Text.Contains("mongodb+srv"))
-            {
-                //e.Cancel = true;
-                txtConnection.Focus();
-                errProviderConnection.SetError(txtConnection, "Only MongoDB supported");
-            }
             else
             {
                 //e.Cancel = false;
@@ -164,25 +159,55 @@ namespace SEP
         private void txtConnection_Leave(object sender, EventArgs e)
         {
             string connectionString = txtConnection.Text;
-            if (ConnectionHelper.IsValidMongoDBConnection(connectionString))
+            if (ConnectionHelper.IsMongoDBConnectionString(connectionString))
             {
-                comboboxDatabase.Visible = true;
-
-                MongoClient mongoClient = new MongoClient(connectionString);
-                IAsyncCursor<string> cursor = mongoClient.ListDatabaseNames();
-                while (cursor.MoveNext())
+                if (ConnectionHelper.IsValidMongoDBConnection(connectionString))
                 {
-                    foreach (var doc in cursor.Current)
+                    comboboxDatabase.Visible = true;
+
+                    MongoClient mongoClient = new MongoClient(connectionString);
+                    IAsyncCursor<string> cursor = mongoClient.ListDatabaseNames();
+                    while (cursor.MoveNext())
                     {
-                        comboboxDatabase.Items.Add(doc);
+                        foreach (var doc in cursor.Current)
+                        {
+                            comboboxDatabase.Items.Add(doc);
+                        }
                     }
+                    comboboxDatabase.SelectedIndex = 0;
                 }
-                comboboxDatabase.SelectedIndex = 0;
+                else
+                {
+                    comboboxDatabase.Visible = false;
+                    comboboxDatabase.Items.Clear();
+                }
             }
-            else
+            else if (ConnectionHelper.IsSQLServerConnectionString(connectionString))
             {
-                comboboxDatabase.Visible = false;
-                comboboxDatabase.Items.Clear();
+                var databaseNames = new List<string>();
+                using (var sqlConnection = new SqlConnection(connectionString))
+                { 
+                    sqlConnection.Open();
+
+                    // SQL query to get all database names
+                    string query = Constants.sqlQuery["getDatabaseNames"];
+                    using (var command = new SqlCommand(query, sqlConnection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                databaseNames.Add(reader["name"].ToString());
+                            }
+                            foreach (var db in databaseNames)
+                            {
+                                comboboxDatabase.Items.Add(db);
+                                System.Diagnostics.Debug.WriteLine(db);
+                            }
+                        }
+                    }
+                    comboboxDatabase.Visible = true;
+                }
             }
         }
 

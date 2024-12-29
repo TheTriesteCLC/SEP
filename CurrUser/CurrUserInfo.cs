@@ -5,6 +5,7 @@ using SEP.ClientDatabase;
 using SEP.DBManagement;
 using SEP.DBManagement.UsersCollection;
 using SEP.Interfaces;
+using SEP.Ultils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,26 @@ namespace SEP.CurrUser
         protected CurrUserInfo(User user)
         {
             currUser = user;
-            _database = new ClientMongoDB(user.connectionString, user.databaseName);
+            //_database = new ClientMongoDB(user.connectionString, user.databaseName);
+            _database = HandleConnectoDatabase(user.connectionString, user.databaseName);
+        }
+        private static IDatabase HandleConnectoDatabase(string connectionString, string databaseName)
+        {
+            if (connectionString == null
+                || databaseName == null)
+            {
+                throw new ArgumentNullException("Connection string cannot be null !!!");
+            }
+            if (ConnectionHelper.IsValidMongoDBConnection(connectionString))
+            {
+                return new ClientMongoDB(connectionString, databaseName);
+            } else if (ConnectionHelper.IsSQLServerConnectionString(connectionString))
+            {
+                return new ClientSQL(connectionString, databaseName);
+            } else
+            {
+                throw new InvalidOperationException("Cannot connect to database !!!");
+            }
         }
         public static User getCurrUser()
         {
