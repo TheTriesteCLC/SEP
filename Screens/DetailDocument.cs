@@ -50,6 +50,9 @@ namespace SEP.Screens
                 button2.Visible = false;
             }
             ConfigureDataGridView();
+
+            database = CurrUserInfo.getUserDB();
+            this.collectionName = collectionName;
         }
         private void ConfigureDataGridView()
         {
