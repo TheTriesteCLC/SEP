@@ -21,10 +21,16 @@ namespace SEP
     {
         private IDatabase database;
 
+        //public TableList()
+        //{
+        //    InitializeComponent();
+        //    database = CurrUserInfo.getUserDB();
+        //    LoadCollections();
+        //}
         public TableList()
         {
             InitializeComponent();
-            database = CurrUserInfo.getUserDB();
+            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
             LoadCollections();
         }
         private async void LoadCollections()

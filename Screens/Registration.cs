@@ -215,5 +215,15 @@ namespace SEP
         {
 
         }
+
+        private void mongodbRadio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sqlServierRadio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

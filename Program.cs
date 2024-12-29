@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using MongoDB.Driver;
 using System.Windows.Forms;
+using SEP.ClientDatabase;
+using SEP.Interfaces;
 
 namespace SEP
 {
@@ -17,7 +19,7 @@ namespace SEP
             //try
             //{
 
-            //    Microsoft.Data.SqlClient.SqlConnection con = new Microsoft.Data.SqlClient.SqlConnection(Constants.testSQLConenctionString);
+            //    Microsoft.Data.SqlClient.SqlConnection con = new Microsoft.Data.SqlClient.SqlConnection(Constants.testSQLConenctionString2);
             //    con.Open();
 
             //    List<string> result = new List<string>();
@@ -44,12 +46,18 @@ namespace SEP
             //catch (Exception ex)
             //{
             //    MessageBox.Show(ex.Message);
+            //    System.Diagnostics.Debug.WriteLine(ex.Message);
             //}
 
+            //IDatabase clientDatabase = new ClientMongoDB("mongodb+srv://vmtriet21:X5djNq4hX4KKN3yR@sep.lpk2b.mongodb.net/", "SEP");
+            //clientDatabase.GetAllCollections().Wait();
 
 
-            Application.Run(new Login());
+            Application.Run(new TableList());
             Application.Exit();
+
+            //Application.Run(new Login());
+            //Application.Exit();
         }
 
         
