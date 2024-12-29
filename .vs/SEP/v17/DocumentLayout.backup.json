@@ -1,26 +1,74 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thoma\\Desktop\\SEP\\",
+  "WorkspaceRootPath": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\clientdatabase\\clientsqlserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:clientdatabase\\clientsqlserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\addnewdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\clientdatabase\\clientmongodb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:clientdatabase\\clientmongodb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|c:\\users\\thoma\\desktop\\sep\\screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\curruser\\curruserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:curruser\\curruserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\registration.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\registration.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\appdatabase\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:appdatabase\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\appdatabase\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:appdatabase\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\interfaces\\dynamicproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:interfaces\\dynamicproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\appdatabase\\userscollection\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:appdatabase\\userscollection\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,74 +78,230 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddNewDocument.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.Designer.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.Designer.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.Designer.cs",
-              "RelativeToolTip": "Screens\\AddNewDocument.Designer.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAowH8AAAAuAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "Registration.Designer.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.Designer.cs",
+              "RelativeDocumentMoniker": "Screens\\Registration.Designer.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.Designer.cs",
+              "RelativeToolTip": "Screens\\Registration.Designer.cs",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAawNkAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T15:38:42.444Z",
+              "WhenOpened": "2024-12-29T07:26:33.603Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddNewDocument.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs [Design]",
-              "RelativeToolTip": "Screens\\AddNewDocument.cs [Design]",
+              "DocumentIndex": 10,
+              "Title": "Registration.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs",
+              "RelativeDocumentMoniker": "Screens\\Registration.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs",
+              "RelativeToolTip": "Screens\\Registration.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA8wCIAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T15:38:25.805Z",
+              "WhenOpened": "2024-12-29T07:25:38.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Registration.cs [Design]",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs",
+              "RelativeDocumentMoniker": "Screens\\Registration.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs [Design]",
+              "RelativeToolTip": "Screens\\Registration.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T07:24:38.961Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IDatabase.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Interfaces\\IDatabase.cs",
-              "RelativeToolTip": "Interfaces\\IDatabase.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAA4wEEAAABUAAAAAAAAAA==",
+              "Title": "TableList.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs",
+              "RelativeDocumentMoniker": "Screens\\TableList.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs",
+              "RelativeToolTip": "Screens\\TableList.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAawD0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T15:17:00.019Z",
+              "WhenOpened": "2024-12-29T07:05:18.196Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TableList.cs [Design]",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs",
+              "RelativeDocumentMoniker": "Screens\\TableList.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs [Design]",
+              "RelativeToolTip": "Screens\\TableList.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T07:05:12.16Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AddNewDocument.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\AddNewDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\AddNewDocument.cs",
-              "RelativeToolTip": "Screens\\AddNewDocument.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAnwCkAAAArAAAAAAAAAA==",
+              "Title": "ClientSqlServer.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientSqlServer.cs",
+              "RelativeDocumentMoniker": "ClientDatabase\\ClientSqlServer.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientSqlServer.cs*",
+              "RelativeToolTip": "ClientDatabase\\ClientSqlServer.cs*",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAgwG4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T15:13:48.621Z",
+              "WhenOpened": "2024-12-28T16:23:48.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetailDocument.cs",
-              "DocumentMoniker": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\DetailDocument.cs",
-              "RelativeDocumentMoniker": "Screens\\DetailDocument.cs",
-              "ToolTip": "C:\\Users\\thoma\\Desktop\\SEP\\Screens\\DetailDocument.cs",
-              "RelativeToolTip": "Screens\\DetailDocument.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAmwFwAAABDAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
+              "RelativeToolTip": "Screens\\Dashboard.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAEwBwAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T08:47:45.388Z",
+              "WhenOpened": "2024-12-28T16:03:43.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DynamicProperty.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\DynamicProperty.cs",
+              "RelativeDocumentMoniker": "Interfaces\\DynamicProperty.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\DynamicProperty.cs",
+              "RelativeToolTip": "Interfaces\\DynamicProperty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T16:00:07.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDatabase.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\IDatabase.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IDatabase.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\IDatabase.cs",
+              "RelativeToolTip": "Interfaces\\IDatabase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T15:57:53.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Database.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\Database.cs",
+              "RelativeDocumentMoniker": "AppDatabase\\Database.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\Database.cs",
+              "RelativeToolTip": "AppDatabase\\Database.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAuwBMAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T15:53:50.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UsersCollection.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\UsersCollection.cs",
+              "RelativeDocumentMoniker": "AppDatabase\\UsersCollection\\UsersCollection.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\UsersCollection.cs",
+              "RelativeToolTip": "AppDatabase\\UsersCollection\\UsersCollection.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T10:39:37.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\User.cs",
+              "RelativeDocumentMoniker": "AppDatabase\\UsersCollection\\User.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\User.cs",
+              "RelativeToolTip": "AppDatabase\\UsersCollection\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T10:39:25.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClientMongoDB.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientMongoDB.cs",
+              "RelativeDocumentMoniker": "ClientDatabase\\ClientMongoDB.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientMongoDB.cs",
+              "RelativeToolTip": "ClientDatabase\\ClientMongoDB.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAIwEsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T10:39:11.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CurrUserInfo.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\CurrUser\\CurrUserInfo.cs",
+              "RelativeDocumentMoniker": "CurrUser\\CurrUserInfo.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\CurrUser\\CurrUserInfo.cs",
+              "RelativeToolTip": "CurrUser\\CurrUserInfo.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAEwA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T10:11:16.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Constants.cs",
+              "RelativeDocumentMoniker": "Constants.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Constants.cs",
+              "RelativeToolTip": "Constants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T09:22:09.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Screens\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T16:03:37.2Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAASwDcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T09:08:54.088Z",
               "EditorCaption": ""
             }
           ]

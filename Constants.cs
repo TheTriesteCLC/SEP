@@ -14,6 +14,7 @@ namespace SEP
         public static readonly string usersDBName = "Users";
 
         public static readonly string testSQLConenctionString = $"data source=TrishVoltman;initial catalog={mainDBString};user id=sa;password=svcntt";
+        public static readonly string testSQLConenctionString2 = $"data source=localhost;initial catalog={mainDBString};user id=sa;password=sqlserver;TrustServerCertificate=True;";
         public static readonly List<Type> supportedType = new List<Type>
         {
             typeof(double),      // BsonType.Double
