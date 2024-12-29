@@ -50,9 +50,6 @@ namespace SEP.Screens
                 button2.Visible = false;
             }
             ConfigureDataGridView();
-
-            database = CurrUserInfo.getUserDB();
-            this.collectionName = collectionName;
         }
         private void ConfigureDataGridView()
         {
@@ -91,7 +88,8 @@ namespace SEP.Screens
             if (!editable)
             {
                 this.fields = foundDocument.toDocumentList();
-            }else
+            }
+            else
             {
                 this.fields = foundDocument.toDocumentListWithoutID();
             }

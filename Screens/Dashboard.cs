@@ -111,7 +111,7 @@ namespace SEP
                 var selectedDocumentId = selectedRow.Cells[0].Value?.ToString() ?? "";
 
                 DetailDocument updateForm = new DetailDocument(this.collectionName, selectedDocumentId, true);
-                
+
                 updateForm.registerObserver(this);
                 updateForm.ShowDialog();
             }
