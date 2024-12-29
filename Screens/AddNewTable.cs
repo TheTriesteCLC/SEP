@@ -10,18 +10,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SEP.CurrUser;
+using SEP.Observers;
+using SEP.Interfaces;
 
 namespace SEP
 {
     public partial class AddNewTable : Form
     {
-        private IMongoDatabase database;
+        private IDatabase database;
+        private DocumentDetailManager addNewTableManager;
         public AddNewTable()
         {
             InitializeComponent();
             database = CurrUserInfo.getUserDB();
+            this.addNewTableManager = new DocumentDetailManager();
         }
-
+        public void registerObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewTableManager.RegisterObserver(documentObserver);
+        }
+        public void unregisterObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewTableManager.UnregisterObserver(documentObserver);
+        }
         private void tableNameValidating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTableName.Text))
@@ -32,13 +43,19 @@ namespace SEP
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async Task<dbResponse> handleAddNewTable(string newColelctionName)
+        {
+            return await this.database.CreateNewCollection(newColelctionName);
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
                 string tableName = txtTableName.Text;
-                database.CreateCollection(tableName);
-                System.Windows.Forms.MessageBox.Show($"Collection '{tableName}' created!");
+                dbResponse result = await handleAddNewTable(tableName);
+                System.Windows.Forms.MessageBox.Show(result.message);
+                this.addNewTableManager.NotifyObservers();
                 this.Close();
             }
         }

@@ -4,6 +4,8 @@ using MongoDB.Driver;
 using SEP.CurrUser;
 using SEP.CustomClassBuilder;
 using SEP.DBManagement;
+using SEP.Interfaces;
+using SEP.Observers;
 using SEP.Ultils;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,12 @@ namespace SEP.Screens
 {
     public partial class AddNewDocument : Form
     {
-        private IMongoDatabase database;
+        private IDatabase database;
         private string collectionName;
         private List<(string PropertyName, Type PropertyType)> initFields;
 
         private List<FieldUI> fieldUIList;
+        private DocumentDetailManager addNewDocumentManager;
 
         public AddNewDocument(string collectionName)
         {
@@ -31,34 +34,24 @@ namespace SEP.Screens
             this.database = CurrUserInfo.getUserDB();
             this.collectionName = collectionName;
             labelCollectionName.Text = collectionName;
-            this.initFields = GetCollectionFields();
+            this.initFields = new List<(string PropertyName, Type PropertyType)>();
 
-            fieldUIList = new List<FieldUI>();
+            this.fieldUIList = new List<FieldUI>();
+            this.addNewDocumentManager = new DocumentDetailManager();
+        }
+        public void registerObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewDocumentManager.RegisterObserver(documentObserver);
+        }
+        public void unregisterObserver(IDocumentObserver documentObserver)
+        {
+            this.addNewDocumentManager.UnregisterObserver(documentObserver);
         }
 
-        private List<(string PropertyName, Type PropertyType)> GetCollectionFields()
+        private async Task<List<(string PropertyName, Type PropertyType)>> GetCollectionFields()
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var documents = collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
-
-            HashSet<(string PropertyName, Type PropertyType)> fields
-                = new HashSet<(string PropertyName, Type PropertyType)>();
-            foreach (var doc in documents)
-            {
-                foreach (var element in doc.Elements)
-                {
-                    var field = (
-                        element.Name,
-                        BsonHelper.BsonTypeToSystemType(element.Value.BsonType
-                    ));
-                    if (!fields.Contains(field) && element.Name != "_id")
-                    {
-                        fields.Add(field);
-                    }
-                }
-            }
-
-            return fields.ToList();
+            dbSchema schema = await this.database.GetCollectionSchema(this.collectionName);
+            return schema.toSchemaList();
         }
         private void RemoveRow(int rowIndex)
         {
@@ -96,7 +89,6 @@ namespace SEP.Screens
 
             tableLayoutPanel1.RowCount--;
         }
-
         private void addNewField(string fieldName, Type fieldType)
         {
             FieldUI newFieldUI = new FieldUI(fieldType, fieldName);
@@ -160,23 +152,6 @@ namespace SEP.Screens
                 }
             };
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            addNewField("", typeof(string));
-        }
-        private void buttonGetSchema_Click(object sender, EventArgs e)
-        {
-            ClearTableLayoutPanel();
-            foreach (var field in initFields)
-            {
-                addNewField(field.PropertyName, field.PropertyType);
-            }
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            handleCreateNewDocument();
-        }
         private void ClearTableLayoutPanel()
         {
             for (int i = tableLayoutPanel1.Controls.Count - 1; i >= 0; i--)
@@ -196,7 +171,7 @@ namespace SEP.Screens
             tableLayoutPanel1.RowCount = 1;
             this.fieldUIList.Clear();
         }
-        private void handleCreateNewDocument()
+        private async Task<dbResponse> handleCreateNewDocument()
         {
             List<(string PropertyName, Type PropertyType)> fields = new List<(string PropertyName, Type PropertyType)>();
             foreach (var fieldUI in fieldUIList)
@@ -211,17 +186,31 @@ namespace SEP.Screens
                 newDocument.setProp(fieldUI.nameInput.Text, fieldUI.dataInput.Text);
             }
 
+            return await database.AddNewDocument(collectionName, newDocument);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            addNewField("", typeof(string));
+        }
+        private async void buttonGetSchema_Click(object sender, EventArgs e)
+        {
+            ClearTableLayoutPanel();
+            this.initFields = await GetCollectionFields();
 
-            var client = new MongoClient(Constants.connectionString);
-            var database1 = client.GetDatabase(Constants.mainDBString);
-            var collection1 = database1.GetCollection<BsonDocument>(collectionName);
+            foreach (var field in initFields)
+            {
+                addNewField(field.PropertyName, field.PropertyType);
+            }
+            this.buttonAdd.Enabled = false;
+        }
+        private async void buttonAdd_Click(object sender, EventArgs e)
+        {
+            dbResponse result = await handleCreateNewDocument();
+            System.Windows.Forms.MessageBox.Show(result.message);
 
-            collection1.InsertOne(newDocument.ToBsonDocument());
-
-            System.Windows.Forms.MessageBox.Show($"Add new document to '{collectionName}'!");
+            this.addNewDocumentManager.NotifyObservers();
             ClearTableLayoutPanel();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -289,15 +278,15 @@ namespace SEP.Screens
             // Clear any previous error
             this.errorType.SetError(this.dataInput, "");
 
-            //if (string.IsNullOrWhiteSpace(data))
-            //{
-            //    this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
-            //    return false;
-            //}
-            //if (selectedType == null)
-            //{
-            //    return false;
-            //}
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
+                return false;
+            }
+            if (selectedType == null)
+            {
+                return false;
+            }
 
             try
             {

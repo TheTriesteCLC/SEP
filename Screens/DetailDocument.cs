@@ -1,34 +1,37 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using SEP.CurrUser;
-using SEP.DBManagement;
-using SEP.Interfaces;
+﻿using SEP.Interfaces;
 using SEP.Observers;
+using SEP.Ultils;
 using System.Collections;
+using System.Data;
+using System.Xml.Linq;
 
 namespace SEP.Screens
 {
     public partial class DetailDocument : Form
     {
-        private IMongoDatabase database;
-        private string collectionName;
         private Dictionary<string, string> documentData;
-        private Dictionary<string, string> originalData;
         private bool isEditable;
+        private Action<Dictionary<string, string>> onSave;
+        private Action<Dictionary<string, string>> onCancel;
         public DocumentDetailManager documentDetailManager;
 
-        public DetailDocument(string collectionName, Dictionary<string, string> data, bool editable)
+        public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback, Action<Dictionary<string, string>> onCancelCallback)
         {
             InitializeComponent();
             documentData = data;
-            originalData = data;
             isEditable = editable;
+            onSave = onSaveCallback;
+            onCancel = onCancelCallback;
             documentDetailManager = new DocumentDetailManager();
 
+            this.database = CurrUserInfo.getUserDB();
+            this.documentDetailManager = new DocumentDetailManager();
+            this.fields = new List<(string PropertyName, Type PropertyType, string PropertyValue)>();
+
             LoadDocumentData();
-            if (isEditable)
+            if (this.editable)
             {
-                // Cho phép chỉnh sửa nếu cần
+                // Cho phép chỉnh sửa
                 dataGridView1.ReadOnly = false;
                 button1.Visible = true;
                 button2.Visible = true;
@@ -45,31 +48,29 @@ namespace SEP.Screens
             database = CurrUserInfo.getUserDB();
             this.collectionName = collectionName;
         }
-
         private void ConfigureDataGridView()
         {
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            if (dataGridView1.Columns.Count >= 2)
+            if (dataGridView1.Columns.Count >= 3)
             {
                 dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.ReadOnly = !isEditable;
-            dataGridView1.RowHeadersVisible = false; 
+            dataGridView1.ReadOnly = !editable;
+            dataGridView1.RowHeadersVisible = false;
 
             DataGridViewCellStyle valueCellStyle = new DataGridViewCellStyle();
             valueCellStyle.WrapMode = DataGridViewTriState.True;
             valueCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].DefaultCellStyle = valueCellStyle;
-            
+            dataGridView1.Columns[2].DefaultCellStyle = valueCellStyle;
+
         }
-
-
-        private void LoadDocumentData()
+        private async void LoadDocumentData()
         {
             // Xóa dữ liệu cũ (nếu có)
             dataGridView1.Columns.Clear();
@@ -77,57 +78,56 @@ namespace SEP.Screens
 
             // Thêm cột
             dataGridView1.Columns.Add("FieldName", "Field");
+            dataGridView1.Columns.Add("FieldType", "Type");
             dataGridView1.Columns.Add("FieldValue", "Value");
 
-            // Thêm dữ liệu
-            foreach (var pair in documentData)
+            dbDocument foundDocument = (await this.database.GetDocumentByID(collectionName, this.documentId));
+            if (!editable)
             {
-                dataGridView1.Rows.Add(pair.Key, pair.Value);
+                this.fields = foundDocument.toDocumentList();
+            }else
+            {
+                this.fields = foundDocument.toDocumentListWithoutID();
+            }
+            // Thêm dữ liệu
+            foreach (var field in this.fields)
+            {
+                dataGridView1.Rows.Add(field.PropertyName, field.PropertyType.ToString(), field.PropertyValue);
             }
 
             // Thiết lập chế độ chỉnh sửa
-            dataGridView1.ReadOnly = !isEditable;
+            dataGridView1.ReadOnly = !editable;
             dataGridView1.AllowUserToAddRows = false; // Không cho phép thêm hàng
         }
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private async Task<dbResponse> handleUpdateDocument()
         {
-            if (isEditable)
+            CustomClass newDocument = new CustomClass(collectionName, this.fields);
+            try
             {
-                // Cập nhật documentData từ DataGridView
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
-                    var fieldValue = dataGridView1.Rows[i].Cells[1].Value?.ToString();
+                    var fieldValue = dataGridView1.Rows[i].Cells[2].Value?.ToString();
 
-                    if (!string.IsNullOrEmpty(fieldName))
-                    {
-                        documentData[fieldName] = fieldValue;
-                    }
+                    newDocument.setProp(fieldName, fieldValue);
                 }
+            }
+            catch (Exception ex)
+            {
+                this.label1.Visible = true;
+            }
 
                 MessageBox.Show("Data has been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // get updated data
-                var newDoc = documentData.ToBsonDocument();
-                newDoc.RemoveElement(newDoc.GetElement("_id"));
-
-                var updateDefinition = new List<UpdateDefinition<BsonDocument>>();
-                foreach (var dataField in newDoc)
+                // Gọi callback lưu dữ liệu
+                if (onSave != null)
                 {
-                    updateDefinition.Add(Builders<BsonDocument>.Update.Set(dataField.Name, dataField.Value));
+                    onSave(documentData);
+                    // Notify that the data has been updated
+                    documentDetailManager.NotifyObservers();
                 }
-                var combinedUpdate = Builders<BsonDocument>.Update.Combine(updateDefinition);
 
-                // add filter
-                var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(originalData["_id"]));
-                // and update
-                var collection = database.GetCollection<BsonDocument>(collectionName);
-                var result = collection.UpdateOne(filter, combinedUpdate);
-
-                // Notify that the data has been updated
-                documentDetailManager.NotifyObservers();
+                //this.Close();
             }
         }
 
@@ -135,23 +135,107 @@ namespace SEP.Screens
         {
             if (isEditable)
             {
-                documentData = new Dictionary<string, string>(originalData);
-
-                // Loop through all columns of the selected row
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                // Gọi callback lưu dữ liệu
+                if (onCancel != null)
                 {
-                    var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
-                    dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
+                    onCancel(documentData);
+
+                    // Loop through all columns of the selected row
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
+                    }
+
+                    dataGridView1.Update();
+                    dataGridView1.Refresh();
                 }
 
-                dataGridView1.Update();
-                dataGridView1.Refresh();
+                //this.Close();
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public bool validateDataInput(string value, Type type)
         {
+            // Clear any previous error
+            this.label1.Visible = false;
+            this.button1.Enabled = true;
 
+            //if (string.IsNullOrWhiteSpace(data))
+            //{
+            //    this.errorType.SetError(this.dataInput, "Data field cannot be empty.");
+            //    return false;
+            //}
+            //if (selectedType == null)
+            //{
+            //    return false;
+            //}
+
+            try
+            {
+                // Validate based on the selected type
+                if (type == typeof(int))
+                {
+                    int.Parse(value);
+                }
+                else if (type == typeof(long))
+                {
+                    long.Parse(value);
+                }
+                else if (type == typeof(decimal))
+                {
+                    decimal.Parse(value);
+                }
+                else if (type == typeof(double))
+                {
+                    double.Parse(value);
+                }
+                else if (type == typeof(string))
+                {
+                    // Strings are always valid, but you can add custom rules
+                    return true;
+                }
+                else if (type == typeof(bool))
+                {
+                    try
+                    {
+                        if (!Constants.booleanTypeValidation.Contains(value))
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.label1.Visible = true;
+                        this.button1.Enabled = false;
+                        return false;
+                    }
+                }
+                else if (type == typeof(DateTime))
+                {
+                    try
+                    {
+                        DateTime.Parse(value);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.label1.Visible = true;
+                        this.button1.Enabled = false;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.label1.Visible = true;
+                this.button1.Enabled = false;
+                return false;
+            }
+            this.label1.Visible = false;
+            this.button1.Enabled = true;
+            return true;
         }
+
+
     }
 }

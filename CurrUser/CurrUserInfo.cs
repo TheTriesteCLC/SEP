@@ -1,8 +1,10 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using SEP.ClientDatabase;
 using SEP.DBManagement;
 using SEP.DBManagement.UsersCollection;
+using SEP.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +18,19 @@ namespace SEP.CurrUser
     {
         private static CurrUserInfo _instance;
         private static object syncLock = new object();
-        private IMongoDatabase _database { get; set; }
+        private IDatabase _database { get; set; }
         private User currUser { get; set; }
 
         protected CurrUserInfo(User user)
         {
             currUser = user;
-            MongoClient dbClient = new MongoClient(user.connectionString);
-            _database = dbClient.GetDatabase(user.databaseName);
+            _database = new ClientMongoDB(user.connectionString, user.databaseName);
         }
         public static User getCurrUser()
         {
             return _instance.currUser;
         }
-        public static IMongoDatabase getUserDB()
+        public static IDatabase getUserDB()
         {
             return _instance._database;
         }

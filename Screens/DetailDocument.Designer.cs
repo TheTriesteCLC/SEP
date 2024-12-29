@@ -31,6 +31,7 @@
             dataGridView1 = new DataGridView();
             button1 = new Button();
             button2 = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -43,6 +44,7 @@
             dataGridView1.Size = new Size(679, 293);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             // 
             // button1
             // 
@@ -66,11 +68,25 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.IndianRed;
+            label1.Location = new Point(221, 311);
+            label1.Name = "label1";
+            label1.Size = new Size(284, 21);
+            label1.TabIndex = 2;
+            label1.Text = "Invalid input data. Please check again!";
+            label1.Visible = false;
+            // 
             // DetailDocument
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
+            Controls.Add(label1);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(button2);
@@ -80,11 +96,13 @@
             Text = "Document";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private DataGridView dataGridView1;
         private Button button2;
         private Button button1;
+        private Label label1;
     }
 }

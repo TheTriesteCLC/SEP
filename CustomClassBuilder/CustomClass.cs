@@ -68,8 +68,24 @@ namespace SEP.CustomClassBuilder
             this.newType = CreateNewClass(className, properties);
             this.instance = Activator.CreateInstance(newType);
         }
+        public CustomClass(string className, List<(string PropertyName, Type PropertyType, string PropertyValue)> multProperties)
+        {
+            this.className = className;
+            this.properties = multProperties?.Select(property => (property.PropertyName, property.PropertyType)).ToList()
+           ?? new List<(string PropertyName, Type PropertyType)>();
+            this.newType = CreateNewClass(className, this.properties);
+            this.instance = Activator.CreateInstance(newType);
+
+            foreach (var prop in multProperties)
+            {
+                this.setProp(prop.PropertyName, prop.PropertyValue);
+            }
+        }
         public void setProp(string name, string value)
         {
+            System.Diagnostics.Debug.WriteLine(name);
+            System.Diagnostics.Debug.WriteLine(value);
+            System.Diagnostics.Debug.WriteLine(value);
             var property = newType.GetProperty(name);
             if (property == null)
             {
