@@ -49,8 +49,7 @@ namespace SEP
             //    System.Diagnostics.Debug.WriteLine(ex.Message);
             //}
 
-            //IDatabase clientDatabase = new ClientMongoDB("mongodb+srv://vmtriet21:X5djNq4hX4KKN3yR@sep.lpk2b.mongodb.net/", "SEP");
-            //clientDatabase.GetAllCollections().Wait();
+
 
 
             Application.Run(new TableList());
@@ -60,7 +59,7 @@ namespace SEP
             //Application.Exit();
         }
 
-        
+
 
         private static void DisplayData(System.Data.DataTable table)
         {

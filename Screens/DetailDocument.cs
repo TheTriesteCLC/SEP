@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using SEP.ClientDatabase;
 using SEP.CurrUser;
 using SEP.CustomClassBuilder;
 using SEP.DBManagement;
@@ -22,7 +23,35 @@ namespace SEP.Screens
         IDatabase database;
         private DocumentDetailManager documentDetailManager;
         private List<(string PropertyName, Type PropertyType, string PropertyValue)> fields;
+        
+        //public DetailDocument(string collectionName, string documentId, bool editable)
+        //{
+        //    InitializeComponent();
+        //    this.collectionName = collectionName;
+        //    this.documentId = documentId;
+        //    this.editable = editable;
 
+        //    this.database = CurrUserInfo.getUserDB();
+        //    this.documentDetailManager = new DocumentDetailManager();
+        //    this.fields = new List<(string PropertyName, Type PropertyType, string PropertyValue)>();
+
+        //    LoadDocumentData();
+        //    if (this.editable)
+        //    {
+        //        // Cho phép chỉnh sửa
+        //        dataGridView1.ReadOnly = false;
+        //        button1.Visible = true;
+        //        button2.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        // Không cho phép chỉnh sửa
+        //        dataGridView1.ReadOnly = true;
+        //        button1.Visible = false;
+        //        button2.Visible = false;
+        //    }
+        //    ConfigureDataGridView();
+        //}
         public DetailDocument(string collectionName, string documentId, bool editable)
         {
             InitializeComponent();
@@ -30,7 +59,7 @@ namespace SEP.Screens
             this.documentId = documentId;
             this.editable = editable;
 
-            this.database = CurrUserInfo.getUserDB();
+            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
             this.documentDetailManager = new DocumentDetailManager();
             this.fields = new List<(string PropertyName, Type PropertyType, string PropertyValue)>();
 

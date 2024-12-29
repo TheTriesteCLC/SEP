@@ -170,21 +170,100 @@ namespace SEP.ClientDatabase
             return new dbSchema(collectionName, schemaFields);
         }
 
-        public async Task<dbDocument> GetDocumentByID(string collectionName, string id)
+        public async Task<string> GetPrimaryKeyColumn(string tableName)
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
-            var document = await collection.Find(filter).FirstOrDefaultAsync();
+            string primaryKeyColumn = null;
 
-            List<dbDocumentField> fields = new List<dbDocumentField>();
-            foreach (var element in document.Elements)
+            string query = @"
+        SELECT COLUMN_NAME 
+        FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+        WHERE TABLE_NAME = @TableName
+        AND OBJECTPROPERTY(OBJECT_ID(CONSTRAINT_SCHEMA + '.' + CONSTRAINT_NAME), 'IsPrimaryKey') = 1";
+
+            try
             {
-                fields.Add(new dbDocumentField(element.Name,
-                        element.Value.ToString(),
-                        BsonHelper.BsonTypeToSystemType(element.Value.BsonType)));
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@TableName", tableName);
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                primaryKeyColumn = reader.GetString(0);
+                            }
+                        }
+                    }
+                }
             }
-            return new dbDocument(fields);
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving primary key column: {ex.Message}");
+            }
+
+            if (string.IsNullOrEmpty(primaryKeyColumn))
+            {
+                throw new Exception($"No primary key column found for table {tableName}");
+            }
+
+            return primaryKeyColumn;
         }
+
+
+        public async Task<dbDocument> GetDocumentByID(string tableName, string id)
+        {
+            dbDocument dbDocument = null;
+
+            try
+            {
+                // Lấy tên cột khóa chính
+                string primaryKeyColumn = await GetPrimaryKeyColumn(tableName);
+
+                string query = $"SELECT * FROM {tableName} WHERE {primaryKeyColumn} = @Id";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                List<dbDocumentField> fields = new List<dbDocumentField>();
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    var columnName = reader.GetName(i);
+                                    var columnValue = reader.GetValue(i)?.ToString();
+                                    var columnType = reader.GetFieldType(i).ToString();
+
+                                    fields.Add(new dbDocumentField(columnName, columnValue, Type.GetType(columnType)));
+                                }
+
+                                dbDocument = new dbDocument(fields);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+
+            return dbDocument ?? throw new Exception("Document not found.");
+        }
+
+
+
 
         public async Task<dbResponse> UpdateDocumentByID(string collectionName, string id, CustomClass updateDocumentObject)
         {
