@@ -1,23 +1,28 @@
-﻿using SEP.Interfaces;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using SEP.CurrUser;
+using SEP.DBManagement;
+using SEP.Interfaces;
 using SEP.Observers;
+using System.Collections;
 
 namespace SEP.Screens
 {
     public partial class DetailDocument : Form
     {
+        private IMongoDatabase database;
+        private string collectionName;
         private Dictionary<string, string> documentData;
+        private Dictionary<string, string> originalData;
         private bool isEditable;
-        private Action<Dictionary<string, string>> onSave;
-        private Action<Dictionary<string, string>> onCancel;
         public DocumentDetailManager documentDetailManager;
 
-        public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback, Action<Dictionary<string, string>> onCancelCallback)
+        public DetailDocument(string collectionName, Dictionary<string, string> data, bool editable)
         {
             InitializeComponent();
             documentData = data;
+            originalData = data;
             isEditable = editable;
-            onSave = onSaveCallback;
-            onCancel = onCancelCallback;
             documentDetailManager = new DocumentDetailManager();
 
             LoadDocumentData();
@@ -36,6 +41,9 @@ namespace SEP.Screens
                 button2.Visible = false;
             }
             ConfigureDataGridView();
+
+            database = CurrUserInfo.getUserDB();
+            this.collectionName = collectionName;
         }
 
         private void ConfigureDataGridView()
@@ -101,15 +109,25 @@ namespace SEP.Screens
 
                 MessageBox.Show("Data has been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Gọi callback lưu dữ liệu
-                if (onSave != null)
-                {
-                    onSave(documentData);
-                    // Notify that the data has been updated
-                    documentDetailManager.NotifyObservers();
-                }
+                // get updated data
+                var newDoc = documentData.ToBsonDocument();
+                newDoc.RemoveElement(newDoc.GetElement("_id"));
 
-                //this.Close();
+                var updateDefinition = new List<UpdateDefinition<BsonDocument>>();
+                foreach (var dataField in newDoc)
+                {
+                    updateDefinition.Add(Builders<BsonDocument>.Update.Set(dataField.Name, dataField.Value));
+                }
+                var combinedUpdate = Builders<BsonDocument>.Update.Combine(updateDefinition);
+
+                // add filter
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(originalData["_id"]));
+                // and update
+                var collection = database.GetCollection<BsonDocument>(collectionName);
+                var result = collection.UpdateOne(filter, combinedUpdate);
+
+                // Notify that the data has been updated
+                documentDetailManager.NotifyObservers();
             }
         }
 
@@ -117,23 +135,17 @@ namespace SEP.Screens
         {
             if (isEditable)
             {
-                // Gọi callback lưu dữ liệu
-                if (onCancel != null)
+                documentData = new Dictionary<string, string>(originalData);
+
+                // Loop through all columns of the selected row
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    onCancel(documentData);
-
-                    // Loop through all columns of the selected row
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
-                        dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
-                    }
-
-                    dataGridView1.Update();
-                    dataGridView1.Refresh();
+                    var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
+                    dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
                 }
 
-                //this.Close();
+                dataGridView1.Update();
+                dataGridView1.Refresh();
             }
         }
 

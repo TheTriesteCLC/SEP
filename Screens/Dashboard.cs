@@ -71,7 +71,7 @@ namespace SEP
                 }
 
                 // Mở form chỉ đọc
-                DetailDocument viewForm = new DetailDocument(documentData, false, null, null);
+                DetailDocument viewForm = new DetailDocument(collectionName, documentData, false);
                 viewForm.ShowDialog();
             }
             else
@@ -116,29 +116,7 @@ namespace SEP
 
                 var originalData = new Dictionary<string, string>(documentData);
 
-                DetailDocument updateForm = new DetailDocument(documentData, true, updatedData =>
-                {
-                    // get updated data
-                    var newDoc = updatedData.ToBsonDocument();
-                    newDoc.RemoveElement(newDoc.GetElement("_id"));
-
-                    var updateDefinition = new List<UpdateDefinition<BsonDocument>>();
-                    foreach (var dataField in newDoc) {
-                        updateDefinition.Add(Builders<BsonDocument>.Update.Set(dataField.Name, dataField.Value));
-                    }
-                    var combinedUpdate = Builders<BsonDocument>.Update.Combine(updateDefinition);
-
-                    // add filter
-                    var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(originalData["_id"]));
-                    // and update
-                    var collection = database.GetCollection<BsonDocument>(collectionName);
-                    var result = collection.UpdateOne(filter, combinedUpdate);
-
-                    // resolve UI
-                }, curDocData =>
-                {
-                    curDocData = new Dictionary<string, string>(originalData);
-                });
+                DetailDocument updateForm = new DetailDocument(collectionName, documentData, true);
                 updateForm.documentDetailManager.RegisterObserver(this);
                 updateForm.ShowDialog();
             }
