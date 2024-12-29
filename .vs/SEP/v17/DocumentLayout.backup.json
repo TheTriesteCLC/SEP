@@ -7,16 +7,28 @@
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:clientdatabase\\clientsqlserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\customclassbuilder\\customclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:customclassbuilder\\customclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:interfaces\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\detaildocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\screens\\tablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\appdatabase\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:appdatabase\\userscollection\\userscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|solutionrelative:screens\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{315280A8-FFEF-4435-9DD9-03DE779DD70A}|SEP.csproj|d:\\subject\\nam_4\\design_pattern\\sep\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,33 +102,58 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomClass.cs",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\CustomClassBuilder\\CustomClass.cs",
+              "RelativeDocumentMoniker": "CustomClassBuilder\\CustomClass.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\CustomClassBuilder\\CustomClass.cs",
+              "RelativeToolTip": "CustomClassBuilder\\CustomClass.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAkwKMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T12:31:55.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DetailDocument.cs [Design]",
+              "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\DetailDocument.cs",
+              "RelativeDocumentMoniker": "Screens\\DetailDocument.cs",
+              "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\DetailDocument.cs [Design]",
+              "RelativeToolTip": "Screens\\DetailDocument.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T12:49:00.881Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ClientSqlServer.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientSqlServer.cs",
               "RelativeDocumentMoniker": "ClientDatabase\\ClientSqlServer.cs",
               "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientSqlServer.cs*",
               "RelativeToolTip": "ClientDatabase\\ClientSqlServer.cs*",
-              "ViewState": "AgIAANIAAAAAAAAAAAAcwAcBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAIwCUBAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-29T12:08:18.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "DetailDocument.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\DetailDocument.cs",
               "RelativeDocumentMoniker": "Screens\\DetailDocument.cs",
               "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\DetailDocument.cs",
               "RelativeToolTip": "Screens\\DetailDocument.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAuwHMAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAIUAAAAAAAAAAAASwJcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-29T12:06:17.228Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Registration.Designer.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.Designer.cs",
               "RelativeDocumentMoniker": "Screens\\Registration.Designer.cs",
@@ -133,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Registration.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs",
               "RelativeDocumentMoniker": "Screens\\Registration.cs",
@@ -146,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "Registration.cs [Design]",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Registration.cs",
               "RelativeDocumentMoniker": "Screens\\Registration.cs",
@@ -158,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "TableList.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs",
               "RelativeDocumentMoniker": "Screens\\TableList.cs",
@@ -171,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "TableList.cs [Design]",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\TableList.cs",
               "RelativeDocumentMoniker": "Screens\\TableList.cs",
@@ -183,20 +216,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Dashboard.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
               "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
               "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
               "RelativeToolTip": "Screens\\Dashboard.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAawFUAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAtwHkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-28T16:03:43.843Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "DynamicProperty.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\DynamicProperty.cs",
               "RelativeDocumentMoniker": "Interfaces\\DynamicProperty.cs",
@@ -214,14 +247,14 @@
               "RelativeDocumentMoniker": "Interfaces\\IDatabase.cs",
               "ToolTip": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Interfaces\\IDatabase.cs",
               "RelativeToolTip": "Interfaces\\IDatabase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAIA/wBMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-28T15:57:53.763Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Database.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\Database.cs",
               "RelativeDocumentMoniker": "AppDatabase\\Database.cs",
@@ -234,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "UsersCollection.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\UsersCollection.cs",
               "RelativeDocumentMoniker": "AppDatabase\\UsersCollection\\UsersCollection.cs",
@@ -247,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\AppDatabase\\UsersCollection\\User.cs",
               "RelativeDocumentMoniker": "AppDatabase\\UsersCollection\\User.cs",
@@ -259,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "ClientMongoDB.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\ClientDatabase\\ClientMongoDB.cs",
               "RelativeDocumentMoniker": "ClientDatabase\\ClientMongoDB.cs",
@@ -272,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "CurrUserInfo.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\CurrUser\\CurrUserInfo.cs",
               "RelativeDocumentMoniker": "CurrUser\\CurrUserInfo.cs",
@@ -285,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Constants.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Constants.cs",
               "RelativeDocumentMoniker": "Constants.cs",
@@ -298,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Screens\\Dashboard.cs",
               "RelativeDocumentMoniker": "Screens\\Dashboard.cs",
@@ -310,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\SUBJECT\\NAM_4\\Design_pattern\\SEP\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

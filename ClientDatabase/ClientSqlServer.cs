@@ -265,21 +265,75 @@ namespace SEP.ClientDatabase
 
 
 
-        public async Task<dbResponse> UpdateDocumentByID(string collectionName, string id, CustomClass updateDocumentObject)
+        public async Task<dbResponse> UpdateDocumentByID(string tableName, string id, CustomClass updateDocumentObject)
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
             try
             {
-                await collection.ReplaceOneAsync(
-                Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(id)),
-                updateDocumentObject.ToBsonDocument());
-                return new dbResponse(true, "Document updated successfully.");
+                // Get the primary key column
+                string primaryKeyColumn = await GetPrimaryKeyColumn(tableName);
+
+                // Build the dynamic UPDATE query
+                var updateQueryBuilder = new StringBuilder($"UPDATE {tableName} SET ");
+
+                // List of parameters for the update query
+                var parameters = new List<SqlParameter>();
+
+                foreach (var property in updateDocumentObject.properties)
+                {
+                    var propertyName = property.PropertyName;
+                    var propertyValue = updateDocumentObject.getProp(propertyName);
+
+                    // Append column and value to the query
+                    updateQueryBuilder.Append($"{propertyName} = @{propertyName}, ");
+
+                    // Add parameter to the list
+                    parameters.Add(new SqlParameter($"@{propertyName}", propertyValue ?? DBNull.Value));
+                }
+
+                // Remove the trailing comma after the last column-value pair
+                updateQueryBuilder.Length--;
+                updateQueryBuilder.Length--;
+
+                // Append WHERE condition with the primary key
+                updateQueryBuilder.Append($" WHERE {primaryKeyColumn} = @Id");
+
+                // Add the primary key parameter
+                parameters.Add(new SqlParameter("@Id", id));
+
+                // Final SQL query
+                string updateQuery = updateQueryBuilder.ToString();
+                System.Diagnostics.Debug.WriteLine("Update query:");
+                System.Diagnostics.Debug.WriteLine(updateQuery);
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (var command = new SqlCommand(updateQuery, connection))
+                    {
+                        // Add all parameters to the command
+                        command.Parameters.AddRange(parameters.ToArray());
+
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            return new dbResponse(true, "Document updated successfully.");
+                        }
+                        else
+                        {
+                            return new dbResponse(false, "No rows were updated. The document might not exist.");
+                        }
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
                 return new dbResponse(false, $"Error: {ex.Message}");
             }
         }
+
+
     }
 
 }
