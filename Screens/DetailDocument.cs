@@ -1,4 +1,9 @@
-﻿using SEP.Interfaces;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using SEP.CurrUser;
+using SEP.CustomClassBuilder;
+using SEP.DBManagement;
+using SEP.Interfaces;
 using SEP.Observers;
 using SEP.Ultils;
 using System.Collections;
@@ -9,20 +14,21 @@ namespace SEP.Screens
 {
     public partial class DetailDocument : Form
     {
-        private Dictionary<string, string> documentData;
-        private bool isEditable;
-        private Action<Dictionary<string, string>> onSave;
-        private Action<Dictionary<string, string>> onCancel;
-        public DocumentDetailManager documentDetailManager;
 
-        public DetailDocument(Dictionary<string, string> data, bool editable, Action<Dictionary<string, string>> onSaveCallback, Action<Dictionary<string, string>> onCancelCallback)
+        private string collectionName;
+        private string documentId;
+        private bool editable;
+
+        IDatabase database;
+        private DocumentDetailManager documentDetailManager;
+        private List<(string PropertyName, Type PropertyType, string PropertyValue)> fields;
+
+        public DetailDocument(string collectionName, string documentId, bool editable)
         {
             InitializeComponent();
-            documentData = data;
-            isEditable = editable;
-            onSave = onSaveCallback;
-            onCancel = onCancelCallback;
-            documentDetailManager = new DocumentDetailManager();
+            this.collectionName = collectionName;
+            this.documentId = documentId;
+            this.editable = editable;
 
             this.database = CurrUserInfo.getUserDB();
             this.documentDetailManager = new DocumentDetailManager();
@@ -44,9 +50,6 @@ namespace SEP.Screens
                 button2.Visible = false;
             }
             ConfigureDataGridView();
-
-            database = CurrUserInfo.getUserDB();
-            this.collectionName = collectionName;
         }
         private void ConfigureDataGridView()
         {
@@ -85,7 +88,8 @@ namespace SEP.Screens
             if (!editable)
             {
                 this.fields = foundDocument.toDocumentList();
-            }else
+            }
+            else
             {
                 this.fields = foundDocument.toDocumentListWithoutID();
             }
@@ -117,41 +121,45 @@ namespace SEP.Screens
                 this.label1.Visible = true;
             }
 
-                MessageBox.Show("Data has been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return await this.database.UpdateDocumentByID(collectionName, this.documentId, newDocument);
+        }
+        public void registerObserver(IDocumentObserver documentObserver)
+        {
+            this.documentDetailManager.RegisterObserver(documentObserver);
+        }
+        public void unregisterObserver(IDocumentObserver documentObserver)
+        {
+            this.documentDetailManager.UnregisterObserver(documentObserver);
+        }
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            if (editable)
+            {
+                dbResponse result = await handleUpdateDocument();
+                MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Gọi callback lưu dữ liệu
-                if (onSave != null)
-                {
-                    onSave(documentData);
-                    // Notify that the data has been updated
-                    documentDetailManager.NotifyObservers();
-                }
-
-                //this.Close();
+                this.documentDetailManager.NotifyObservers();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (isEditable)
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (editable)
             {
-                // Gọi callback lưu dữ liệu
-                if (onCancel != null)
-                {
-                    onCancel(documentData);
+                string fieldValue = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Type fieldType = this.fields[e.RowIndex].PropertyType;
 
-                    // Loop through all columns of the selected row
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        var fieldName = dataGridView1.Rows[i].Cells[0].Value?.ToString();
-                        dataGridView1.Rows[i].Cells[1].Value = documentData[fieldName];
-                    }
-
-                    dataGridView1.Update();
-                    dataGridView1.Refresh();
-                }
-
-                //this.Close();
+                validateDataInput(fieldValue, fieldType);
             }
         }
 

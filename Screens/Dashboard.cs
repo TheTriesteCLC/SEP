@@ -108,41 +108,11 @@ namespace SEP
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                Dictionary<string, string> documentData = new Dictionary<string, string>();
+                var selectedDocumentId = selectedRow.Cells[0].Value?.ToString() ?? "";
 
-                foreach (DataGridViewCell cell in selectedRow.Cells)
-                {
-                    string columnName = dataGridView1.Columns[cell.ColumnIndex].HeaderText;
-                    string cellValue = cell.Value?.ToString() ?? string.Empty;
-                    documentData[columnName] = cellValue;
-                }
+                DetailDocument updateForm = new DetailDocument(this.collectionName, selectedDocumentId, true);
 
-                var originalData = new Dictionary<string, string>(documentData);
-
-                DetailDocument updateForm = new DetailDocument(documentData, true, updatedData =>
-                {
-                    // get updated data
-                    var newDoc = updatedData.ToBsonDocument();
-                    newDoc.RemoveElement(newDoc.GetElement("_id"));
-
-                    var updateDefinition = new List<UpdateDefinition<BsonDocument>>();
-                    foreach (var dataField in newDoc) {
-                        updateDefinition.Add(Builders<BsonDocument>.Update.Set(dataField.Name, dataField.Value));
-                    }
-                    var combinedUpdate = Builders<BsonDocument>.Update.Combine(updateDefinition);
-
-                    // add filter
-                    var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(originalData["_id"]));
-                    // and update
-                    var collection = database.GetCollection<BsonDocument>(collectionName);
-                    var result = collection.UpdateOne(filter, combinedUpdate);
-
-                    // resolve UI
-                }, curDocData =>
-                {
-                    curDocData = new Dictionary<string, string>(originalData);
-                });
-                updateForm.documentDetailManager.RegisterObserver(this);
+                updateForm.registerObserver(this);
                 updateForm.ShowDialog();
             }
             else
