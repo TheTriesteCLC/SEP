@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using SEP.ClientDatabase;
 using SEP.CurrUser;
 using SEP.Interfaces;
 
@@ -57,9 +58,17 @@ namespace SEP
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            AddNewTable newTable = new AddNewTable();
-            newTable.registerObserver(this);
-            newTable.ShowDialog();
+            if(this.database is ClientSQL)
+            {
+                AddNewTable newTable = new AddNewTable(true);
+                newTable.registerObserver(this);
+                newTable.ShowDialog();
+            }else
+            {
+                AddNewTable newTable = new AddNewTable(false);
+                newTable.registerObserver(this);
+                newTable.ShowDialog();
+            }
         }
         public void Update()
         {

@@ -36,7 +36,7 @@ namespace SEP.ClientDatabase
             }
         }
 
-        public async Task<dbResponse> CreateNewCollection(string collectionName)
+        public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
         {
             var collectionList = await database.ListCollectionNames().ToListAsync();
             if (collectionList.Contains(collectionName))

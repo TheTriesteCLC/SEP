@@ -2,6 +2,7 @@
 using MongoDB.Driver.Core.Configuration;
 using SEP.CustomClassBuilder;
 using SEP.Interfaces;
+using SEP.Ultils;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -46,9 +47,37 @@ namespace SEP.ClientDatabase
             throw new NotImplementedException();
         }
 
-        public Task<dbResponse> CreateNewCollection(string collectionName)
+        public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (schema == null || schema.fields == null || schema.fields.Count == 0)
+                {
+                    return new dbResponse(false, "Schema must have at least one field.");
+                }
+                var columnDefinitions = schema.fields.Select(field =>
+                {
+                    string sqlType = SQLHelper.ConvertTypeToSql(field.type);
+                    return $"{field.name} {sqlType}";
+                });
+                // Construct the CREATE TABLE query
+                string query = $"CREATE TABLE [{collectionName}] (" +
+                    "_id INT NOT NULL IDENTITY," +
+                    $"{string.Join(", ", columnDefinitions)}," +
+                    "PRIMARY KEY (_id))";
+
+                System.Diagnostics.Debug.WriteLine(query);
+                using (SqlCommand command = new SqlCommand(query, this.connection))
+                {
+                    await command.ExecuteNonQueryAsync();
+                }
+
+                return new dbResponse(false, $"Table '{collectionName}' created successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new dbResponse(false, $"Error: {ex.Message}");
+            }
         }
 
         public Task<dbResponse> DeleteDocumentByID(string collectionName, string id)
