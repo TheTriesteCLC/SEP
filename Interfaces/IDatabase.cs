@@ -5,7 +5,7 @@ namespace SEP.Interfaces
     internal interface IDatabase
     {
         Task<List<dbCollection>> GetAllCollections();
-        Task<dbResponse> CreateNewCollection(string collectionName);
+        Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null);
         Task<List<dbDocument>> GetCollection(string collectionName);
         Task<dbDocument> GetDocumentByID(string collectionName, string id);
         Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject);
@@ -97,6 +97,16 @@ namespace SEP.Interfaces
             List<dbSchemaField> fieldsWithNoID = this.fields.Where(x => x.name != "_id").ToList();
             return fieldsWithNoID?.Select(field => (field.name, field.type)).ToList() 
                 ?? new List<(string, Type)>();
+        }
+        public void addField(dbSchemaField field)
+        {
+            if(this.fields.Any(x => x.name == field.name)) 
+            {
+                return;
+            }else
+            {
+                this.fields.Add(field);
+            }
         }
     }
 }
