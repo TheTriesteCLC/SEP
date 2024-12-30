@@ -1,4 +1,7 @@
-﻿using SEP.Interfaces;
+﻿using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
+using SEP.CustomClassBuilder;
+using SEP.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
@@ -19,7 +22,7 @@ namespace SEP.ClientDatabase
             {
                 this.server = new Server(new ServerConnection(new SqlConnection(connectionString)));
                 this.database = new Database(this.server, databaseName);
-            } 
+            }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -35,7 +38,7 @@ namespace SEP.ClientDatabase
         public Task<dbResponse> CreateNewCollection(string collectionName)
         {
             throw new NotImplementedException();
-        }
+                }
 
         //public async Task<dbResponse> CreateNewDatabase(string databaseName)
         //{
@@ -114,7 +117,7 @@ namespace SEP.ClientDatabase
         //}
 
         public async Task<TableCollection> GetAllTables()
-        {
+                    {
             TableCollection tables = this.database.Tables;
             return tables;
         }

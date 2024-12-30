@@ -47,6 +47,8 @@
             label7 = new Label();
             errProviderConnection = new ErrorProvider(components);
             comboboxDatabase = new ComboBox();
+            mongodbRadio = new RadioButton();
+            sqlServerRadio = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)errProviderUsername).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errProviderConfirm).BeginInit();
@@ -60,7 +62,7 @@
             label1.ForeColor = Color.FromArgb(116, 86, 174);
             label1.Location = new Point(280, 30);
             label1.Name = "label1";
-            label1.Size = new Size(164, 37);
+            label1.Size = new Size(200, 46);
             label1.TabIndex = 0;
             label1.Text = "Get Started";
             // 
@@ -70,7 +72,7 @@
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label2.Location = new Point(280, 87);
             label2.Name = "label2";
-            label2.Size = new Size(69, 17);
+            label2.Size = new Size(89, 23);
             label2.TabIndex = 1;
             label2.Text = "Username";
             // 
@@ -107,7 +109,7 @@
             label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label3.Location = new Point(280, 229);
             label3.Name = "label3";
-            label3.Size = new Size(66, 17);
+            label3.Size = new Size(85, 23);
             label3.TabIndex = 3;
             label3.Text = "Password";
             // 
@@ -131,7 +133,7 @@
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label4.Location = new Point(280, 300);
             label4.Name = "label4";
-            label4.Size = new Size(120, 17);
+            label4.Size = new Size(156, 23);
             label4.TabIndex = 5;
             label4.Text = "Confirm Password";
             // 
@@ -144,7 +146,7 @@
             checkShowPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkShowPassword.Location = new Point(280, 354);
             checkShowPassword.Name = "checkShowPassword";
-            checkShowPassword.Size = new Size(119, 21);
+            checkShowPassword.Size = new Size(153, 27);
             checkShowPassword.TabIndex = 7;
             checkShowPassword.Text = "Show password";
             checkShowPassword.UseVisualStyleBackColor = true;
@@ -172,7 +174,7 @@
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(308, 448);
             label5.Name = "label5";
-            label5.Size = new Size(164, 17);
+            label5.Size = new Size(211, 23);
             label5.TabIndex = 10;
             label5.Text = "Already have an account?";
             // 
@@ -184,7 +186,7 @@
             label6.ForeColor = Color.FromArgb(116, 86, 174);
             label6.Location = new Point(354, 466);
             label6.Name = "label6";
-            label6.Size = new Size(63, 25);
+            label6.Size = new Size(78, 32);
             label6.TabIndex = 11;
             label6.Text = "Login";
             label6.Click += labelLoginClick;
@@ -222,7 +224,7 @@
             label7.Location = new Point(280, 149);
             label7.MaximumSize = new Size(180, 0);
             label7.Name = "label7";
-            label7.Size = new Size(147, 34);
+            label7.Size = new Size(157, 69);
             label7.TabIndex = 12;
             label7.Text = "Connection string (MongoDB supported)";
             // 
@@ -238,17 +240,43 @@
             comboboxDatabase.FormattingEnabled = true;
             comboboxDatabase.Location = new Point(502, 193);
             comboboxDatabase.Name = "comboboxDatabase";
-            comboboxDatabase.Size = new Size(121, 25);
+            comboboxDatabase.Size = new Size(121, 29);
             comboboxDatabase.TabIndex = 14;
             comboboxDatabase.Visible = false;
             comboboxDatabase.SelectedIndexChanged += comboboxDatabase_SelectedIndexChanged;
             // 
+            // mongodbRadio
+            // 
+            mongodbRadio.AutoSize = true;
+            mongodbRadio.Location = new Point(104, 149);
+            mongodbRadio.Name = "mongodbRadio";
+            mongodbRadio.Size = new Size(112, 27);
+            mongodbRadio.TabIndex = 15;
+            mongodbRadio.TabStop = true;
+            mongodbRadio.Text = "MongoDB";
+            mongodbRadio.UseVisualStyleBackColor = true;
+            mongodbRadio.CheckedChanged += mongodbRadio_CheckedChanged;
+            // 
+            // sqlServerRadio
+            // 
+            sqlServerRadio.AutoSize = true;
+            sqlServerRadio.Location = new Point(104, 190);
+            sqlServerRadio.Name = "sqlServerRadio";
+            sqlServerRadio.Size = new Size(120, 27);
+            sqlServerRadio.TabIndex = 16;
+            sqlServerRadio.TabStop = true;
+            sqlServerRadio.Text = "SQL Server";
+            sqlServerRadio.UseVisualStyleBackColor = true;
+            sqlServerRadio.CheckedChanged += sqlServierRadio_CheckedChanged;
+            // 
             // Registration
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(784, 511);
+            Controls.Add(sqlServerRadio);
+            Controls.Add(mongodbRadio);
             Controls.Add(comboboxDatabase);
             Controls.Add(txtConnection);
             Controls.Add(label7);
@@ -297,5 +325,7 @@
         private Label label7;
         private ErrorProvider errProviderConnection;
         private ComboBox comboboxDatabase;
+        private RadioButton mongodbRadio;
+        private RadioButton sqlServerRadio;
     }
 }

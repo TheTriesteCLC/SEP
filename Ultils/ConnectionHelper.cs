@@ -49,8 +49,23 @@ namespace SEP.Ultils
                 // General exception handling
                 System.Diagnostics.Debug.WriteLine($"An error occurred: {ex.Message}");
             }
-
             return false;
+        }
+        public static bool IsMongoDBConnectionString(string connectionString)
+        {
+            // Common patterns for MongoDB connection strings
+            return connectionString.StartsWith("mongodb://", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.StartsWith("mongodb+srv://", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.Contains("MongoDB", StringComparison.OrdinalIgnoreCase);
+        }
+        public static bool IsSQLServerConnectionString(string connectionString)
+        {
+            // Common patterns for SQL Server connection strings
+            return connectionString.Contains("Server=", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.Contains("Initial Catalog=", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.Contains("User ID=", StringComparison.OrdinalIgnoreCase) ||
+                   connectionString.Contains("Password=", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
