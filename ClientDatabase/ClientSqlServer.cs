@@ -10,6 +10,8 @@ using SEP.Interfaces;
 using SEP.Ultils;
 using System.Data.SqlClient;
 using MongoDB.Driver.Core.Configuration;
+using System.Data.Common;
+using System.Data;
 
 namespace SEP.ClientDatabase
 {
@@ -59,7 +61,7 @@ namespace SEP.ClientDatabase
                 var columnDefinitions = schema.fields.Select(field =>
                 {
                     string sqlType = SQLHelper.ConvertTypeToSql(field.type);
-                    return $"{field.name} {sqlType}";
+                    return $"[{field.name}] {sqlType}";
                 });
                 // Construct the CREATE TABLE query
                 string query = $"CREATE TABLE [{collectionName}] (" +
@@ -83,7 +85,30 @@ namespace SEP.ClientDatabase
 
         public async Task<dbResponse> DeleteDocumentByID(string collectionName, string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = $"DELETE FROM [{collectionName}] WHERE _id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
+                    {
+                        return new dbResponse(true, $"Row deleted successfully.");
+                    }
+                    else
+                    {
+                        return new dbResponse(false, $"No row found with ID {id}.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new dbResponse(false, $"An error occurred: {ex.Message}");
+            }
         }
 
         public async Task<List<dbCollection>> GetAllCollections()
@@ -107,7 +132,7 @@ namespace SEP.ClientDatabase
         {
             var dbDocuments = new List<dbDocument>();
 
-            string query = $"SELECT * FROM [dbo].[{tableName}]"; // Ensure table name is delimited
+            string query = $"SELECT * FROM [{tableName}]"; // Ensure table name is delimited
 
             try
             {
@@ -141,7 +166,30 @@ namespace SEP.ClientDatabase
 
         public async Task<dbSchema> GetCollectionSchema(string collectionName)
         {
-            throw new NotImplementedException();
+            List<dbSchemaField> fields = new List<dbSchemaField>();
+
+            string query = @"
+            SELECT COLUMN_NAME, DATA_TYPE
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_NAME = @CollectionName";
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@CollectionName", collectionName);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var columnName = reader.GetString(0);
+                        var dataType = reader.GetString(1);
+
+                        // Convert SQL data type string to Type (this is simplified, you might want a more complete mapping)
+                        Type fieldType = SQLHelper.ConvertSqlToType(dataType);
+                        fields.Add(new dbSchemaField(columnName, fieldType));
+                    }
+                }
+            }
+            return new dbSchema(collectionName, fields);
         }
 
         public async Task<string> GetPrimaryKeyColumn(string tableName)
@@ -156,20 +204,15 @@ namespace SEP.ClientDatabase
 
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, connection))
                 {
-                    await connection.OpenAsync();
+                    command.Parameters.AddWithValue("@TableName", tableName);
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        command.Parameters.AddWithValue("@TableName", tableName);
-
-                        using (var reader = await command.ExecuteReaderAsync())
+                        if (await reader.ReadAsync())
                         {
-                            if (await reader.ReadAsync())
-                            {
-                                primaryKeyColumn = reader.GetString(0);
-                            }
+                            primaryKeyColumn = reader.GetString(0);
                         }
                     }
                 }
@@ -199,31 +242,30 @@ namespace SEP.ClientDatabase
 
                 string query = $"SELECT * FROM {tableName} WHERE {primaryKeyColumn} = @Id";
 
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, connection))
                 {
-                    await connection.OpenAsync();
+                    command.Parameters.AddWithValue("@Id", id);
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (var reader = await command.ExecuteReaderAsync())
+                        if (await reader.ReadAsync())
                         {
-                            if (await reader.ReadAsync())
+                            List<dbDocumentField> fields = new List<dbDocumentField>();
+
+                            for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                List<dbDocumentField> fields = new List<dbDocumentField>();
+                                var columnName = reader.GetName(i);
+                                var columnValue = reader.GetValue(i)?.ToString();
+                                var columnType = reader.GetFieldType(i);
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    var columnName = reader.GetName(i);
-                                    var columnValue = reader.GetValue(i)?.ToString();
-                                    var columnType = reader.GetFieldType(i).ToString();
+                                System.Diagnostics.Debug.WriteLine(columnName);
+                                System.Diagnostics.Debug.WriteLine(columnValue);
+                                System.Diagnostics.Debug.WriteLine(columnType);
 
-                                    fields.Add(new dbDocumentField(columnName, columnValue, Type.GetType(columnType)));
-                                }
-
-                                dbDocument = new dbDocument(fields);
+                                fields.Add(new dbDocumentField(columnName, columnValue, columnType));
                             }
+
+                            dbDocument = new dbDocument(fields);
                         }
                     }
                 }
@@ -235,9 +277,6 @@ namespace SEP.ClientDatabase
 
             return dbDocument ?? throw new Exception("Document not found.");
         }
-
-
-
 
         public async Task<dbResponse> UpdateDocumentByID(string tableName, string id, CustomClass updateDocumentObject)
         {

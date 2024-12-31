@@ -22,6 +22,21 @@ namespace SEP.Ultils
                 _ => throw new NotSupportedException($"Type {type.Name} is not supported."),
             };
         }
+        public static Type ConvertSqlToType(string sql)
+        {
+            var sqlType = sql.ToUpper().Trim();
 
+            return sqlType switch
+            {
+                var t when t.StartsWith("NVARCHAR") || t.StartsWith("VARCHAR") => typeof(string),
+                "INT" => typeof(int),
+                "FLOAT" => typeof(double),
+                "BIT" => typeof(bool),
+                "DATETIME" => typeof(DateTime),
+                "BIGINT" => typeof(long),
+                "DECIMAL" => typeof(decimal),
+                _ => throw new NotSupportedException($"SQL type {sql} is not supported.")
+            };
+        }
     }
 }
