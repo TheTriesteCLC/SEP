@@ -202,7 +202,6 @@ namespace SEP
                             foreach (var db in databaseNames)
                             {
                                 comboboxDatabase.Items.Add(db);
-                                System.Diagnostics.Debug.WriteLine(db);
                             }
                         }
                     }

@@ -258,10 +258,6 @@ namespace SEP.ClientDatabase
                                 var columnValue = reader.GetValue(i)?.ToString();
                                 var columnType = reader.GetFieldType(i);
 
-                                System.Diagnostics.Debug.WriteLine(columnName);
-                                System.Diagnostics.Debug.WriteLine(columnValue);
-                                System.Diagnostics.Debug.WriteLine(columnType);
-
                                 fields.Add(new dbDocumentField(columnName, columnValue, columnType));
                             }
 
@@ -284,61 +280,28 @@ namespace SEP.ClientDatabase
             {
                 // Get the primary key column
                 string primaryKeyColumn = await GetPrimaryKeyColumn(tableName);
-
-                // Build the dynamic UPDATE query
-                var updateQueryBuilder = new StringBuilder($"UPDATE {tableName} SET ");
-
-                // List of parameters for the update query
-                var parameters = new List<SqlParameter>();
-
-                foreach (var property in updateDocumentObject.properties)
+                if (string.IsNullOrEmpty(primaryKeyColumn))
                 {
-                    var propertyName = property.PropertyName;
-                    var propertyValue = updateDocumentObject.getProp(propertyName);
-
-                    // Append column and value to the query
-                    updateQueryBuilder.Append($"{propertyName} = @{propertyName}, ");
-
-                    // Add parameter to the list
-                    parameters.Add(new SqlParameter($"@{propertyName}", propertyValue ?? DBNull.Value));
+                    return new dbResponse(false, "Primary key column not found for the table.");
                 }
+                string updateQuery = SQLHelper.updateStringBuilder(tableName, updateDocumentObject, primaryKeyColumn, id);
 
-                // Remove the trailing comma after the last column-value pair
-                updateQueryBuilder.Length--;
-                updateQueryBuilder.Length--;
-
-                // Append WHERE condition with the primary key
-                updateQueryBuilder.Append($" WHERE {primaryKeyColumn} = @Id");
-
-                // Add the primary key parameter
-                parameters.Add(new SqlParameter("@Id", id));
-
-                // Final SQL query
-                string updateQuery = updateQueryBuilder.ToString();
                 System.Diagnostics.Debug.WriteLine("Update query:");
                 System.Diagnostics.Debug.WriteLine(updateQuery);
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(updateQuery, this.connection))
                 {
-                    await connection.OpenAsync();
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
 
-                    using (var command = new SqlCommand(updateQuery, connection))
+                    if (rowsAffected > 0)
                     {
-                        // Add all parameters to the command
-                        command.Parameters.AddRange(parameters.ToArray());
-
-                        int rowsAffected = await command.ExecuteNonQueryAsync();
-
-                        if (rowsAffected > 0)
-                        {
-                            return new dbResponse(true, "Document updated successfully.");
-                        }
-                        else
-                        {
-                            return new dbResponse(false, "No rows were updated. The document might not exist.");
-                        }
+                        return new dbResponse(true, "Document updated successfully.");
+                    }
+                    else
+                    {
+                        return new dbResponse(false, "No rows were updated. The document might not exist.");
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {

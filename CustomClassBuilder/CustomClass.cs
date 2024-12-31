@@ -83,9 +83,6 @@ namespace SEP.CustomClassBuilder
         }
         public void setProp(string name, string value)
         {
-            System.Diagnostics.Debug.WriteLine(name);
-            System.Diagnostics.Debug.WriteLine(value);
-            System.Diagnostics.Debug.WriteLine(value);
             var property = newType.GetProperty(name);
             if (property == null)
             {
