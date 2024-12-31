@@ -30,7 +30,7 @@ namespace SEP.CurrUser
                 return new ClientMongoDB(connectionString, databaseName);
             } else if (ConnectionHelper.IsSQLServerConnectionString(connectionString))
             {
-                return new ClientSQL(connectionString, databaseName);
+                return new ClientSQLServer(connectionString, databaseName);
             } else
             {
                 throw new InvalidOperationException("Cannot connect to database !!!");

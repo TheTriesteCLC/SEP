@@ -15,6 +15,12 @@ namespace SEP
             database = CurrUserInfo.getUserDB();
             LoadCollections();
         }
+        //public TableList()
+        //{
+        //    InitializeComponent();
+        //    this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
+        //    LoadCollections();
+        //}
         private async void LoadCollections()
         {
             List<dbCollection> collections = await database.GetAllCollections();
@@ -46,7 +52,7 @@ namespace SEP
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            if(this.database is ClientSQL)
+            if(this.database is ClientSQLServer)
             {
                 AddNewTable newTable = new AddNewTable(true);
                 newTable.registerObserver(this);

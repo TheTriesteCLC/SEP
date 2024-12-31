@@ -1,42 +1,81 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SEP.CustomClassBuilder;
 using SEP.Interfaces;
 using SEP.Ultils;
+using System.Data.SqlClient;
+using MongoDB.Driver.Core.Configuration;
+using System.Data.Common;
+using System.Data;
 
 namespace SEP.ClientDatabase
 {
-    internal class ClientSqlServer: IDatabase
+    internal class ClientSQLServer: IDatabase
     {
         private string connectionString;
         private string databaseName;
         private SqlConnection connection;
-        private IMongoDatabase database;
-        public ClientSqlServer(string connectionString, string databaseName)
+
+        public ClientSQLServer(string connectionString, string databaseName)
         {
             this.connectionString = connectionString;
             this.databaseName = databaseName;
-            this.connection = new SqlConnection(connectionString);
+            var builder = new SqlConnectionStringBuilder(this.connectionString)
+            {
+                InitialCatalog = this.databaseName
+            };
+
+            string fullConnectionString = builder.ToString();
             try
             {
-                connection.Open();
+                this.connection = new SqlConnection(fullConnectionString);
+                this.connection.Open();
                 System.Diagnostics.Debug.WriteLine("Connected to SQL Server successfully.");
             }
             catch (Exception ex)
             {
                 throw new Exception($"Failed to connect to SQL Server: {ex.Message}");
             }
+
+
         }
 
         public async Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject)
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
+            throw new NotImplementedException();
+        }
+
+        public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
+        {
             try
             {
-                await collection.InsertOneAsync(newDocumentObject.ToBsonDocument());
-                return new dbResponse(true, "Document added successfully.");
+                if (schema == null || schema.fields == null || schema.fields.Count == 0)
+                {
+                    return new dbResponse(false, "Schema must have at least one field.");
+                }
+                var columnDefinitions = schema.fields.Select(field =>
+                {
+                    string sqlType = SQLHelper.ConvertTypeToSql(field.type);
+                    return $"[{field.name}] {sqlType}";
+                });
+                // Construct the CREATE TABLE query
+                string query = $"CREATE TABLE [{collectionName}] (" +
+                    "_id INT NOT NULL IDENTITY," +
+                    $"{string.Join(", ", columnDefinitions)}," +
+                    "PRIMARY KEY (_id))";
+
+                System.Diagnostics.Debug.WriteLine(query);
+                using (SqlCommand command = new SqlCommand(query, this.connection))
+                {
+                    await command.ExecuteNonQueryAsync();
+                }
+
+                return new dbResponse(false, $"Table '{collectionName}' created successfully.");
             }
             catch (Exception ex)
             {
@@ -44,125 +83,113 @@ namespace SEP.ClientDatabase
             }
         }
 
-        public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
-        {
-            var collectionList = await database.ListCollectionNames().ToListAsync();
-            if (collectionList.Contains(collectionName))
-            {
-                return new dbResponse(false, "Collection already exists.");
-            }
-            await database.CreateCollectionAsync(collectionName);
-            return new dbResponse(false, $"Collection '{collectionName}' created successfully.");
-        }
-
         public async Task<dbResponse> DeleteDocumentByID(string collectionName, string id)
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(id));
-            var result = await collection.DeleteOneAsync(filter);
-            if (result.DeletedCount > 0)
+            try
             {
-                return new dbResponse(true, "Document deleted successfully.");
+                string query = $"DELETE FROM [{collectionName}] WHERE _id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0)
+                    {
+                        return new dbResponse(true, $"Row deleted successfully.");
+                    }
+                    else
+                    {
+                        return new dbResponse(false, $"No row found with ID {id}.");
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return new dbResponse(false, "Document not found.");
+                return new dbResponse(false, $"An error occurred: {ex.Message}");
             }
         }
 
         public async Task<List<dbCollection>> GetAllCollections()
         {
-            try
+            List<dbCollection> tables = new List<dbCollection>();
+            string query = Constants.sqlQuery["getAllTablesName"];
+            using (var command = new SqlCommand(query, this.connection))
             {
-                List<dbCollection> collections = new List<dbCollection>();
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    string query = "SELECT name FROM sys.tables";
-                    SqlCommand command = new SqlCommand(query, connection);
-
-                    await connection.OpenAsync();
-                    SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                    while (reader.Read())
+                    while (await reader.ReadAsync())
                     {
-                        collections.Add(new dbCollection(reader.GetString(0)));
+                        tables.Add(new dbCollection(reader.GetString(0))); // Retrieve table name
                     }
                 }
-                return collections;
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error: {ex.Message}");
-            }
+            return tables;
         }
 
         public async Task<List<dbDocument>> GetCollection(string tableName)
         {
-            List<dbDocument> dbDocuments = new List<dbDocument>();
+            var dbDocuments = new List<dbDocument>();
 
-            // Câu truy vấn SQL để lấy tất cả các dòng từ bảng
-            string query = $"SELECT * FROM {tableName}";
+            string query = $"SELECT * FROM [{tableName}]"; // Ensure table name is delimited
 
-            // Mở kết nối tới SQL Server trong một khối `using` để đảm bảo tài nguyên được giải phóng
             try
             {
-                // Sử dụng 'using' để tự động đóng kết nối sau khi xong
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, this.connection))
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    await connection.OpenAsync();
-
-                    using (var command = new SqlCommand(query, connection))
-                    using (var reader = await command.ExecuteReaderAsync())
+                    while (await reader.ReadAsync())
                     {
-                        while (await reader.ReadAsync())
+                        var fields = new List<dbDocumentField>();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            List<dbDocumentField> fields = new List<dbDocumentField>();
+                            var fieldName = reader.GetName(i);
+                            var fieldValue = reader.IsDBNull(i) ? null : reader.GetValue(i).ToString();
+                            var fieldType = reader.GetFieldType(i);
 
-                            // Duyệt qua tất cả các cột trong bảng và lấy giá trị
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                var columnName = reader.GetName(i);
-                                var columnValue = reader.GetValue(i).ToString();
-                                var columnType = reader.GetFieldType(i).ToString();
-
-                                fields.Add(new dbDocumentField(columnName, columnValue, Type.GetType(columnType)));
-                            }
-
-                            dbDocuments.Add(new dbDocument(fields));
+                            fields.Add(new dbDocumentField(fieldName, fieldValue, fieldType));
                         }
+
+                        dbDocuments.Add(new dbDocument(fields));
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error: {ex.Message}");
+                Console.WriteLine($"Error retrieving table data: {ex.Message}");
             }
 
             return dbDocuments;
         }
 
-
-
         public async Task<dbSchema> GetCollectionSchema(string collectionName)
         {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var documents = await collection.Find(new BsonDocument()).Limit(100).ToListAsync();
-            var schemaFields = new List<dbSchemaField>();
-            foreach (var doc in documents)
+            List<dbSchemaField> fields = new List<dbSchemaField>();
+
+            string query = @"
+            SELECT COLUMN_NAME, DATA_TYPE
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_NAME = @CollectionName";
+            using (var command = new SqlCommand(query, connection))
             {
-                foreach (var element in doc.Elements)
+                command.Parameters.AddWithValue("@CollectionName", collectionName);
+
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    if (element.Name != "_id")
+                    while (await reader.ReadAsync())
                     {
-                        var newField = new dbSchemaField(element.Name, BsonHelper.BsonTypeToSystemType(element.Value.BsonType));
-                        if (!schemaFields.Any(x => x.name == newField.name))
-                        {
-                            schemaFields.Add(newField);
-                        }
+                        var columnName = reader.GetString(0);
+                        var dataType = reader.GetString(1);
+
+                        // Convert SQL data type string to Type (this is simplified, you might want a more complete mapping)
+                        Type fieldType = SQLHelper.ConvertSqlToType(dataType);
+                        fields.Add(new dbSchemaField(columnName, fieldType));
                     }
                 }
             }
-            return new dbSchema(collectionName, schemaFields);
+            return new dbSchema(collectionName, fields);
         }
 
         public async Task<string> GetPrimaryKeyColumn(string tableName)
@@ -177,20 +204,15 @@ namespace SEP.ClientDatabase
 
             try
             {
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, connection))
                 {
-                    await connection.OpenAsync();
+                    command.Parameters.AddWithValue("@TableName", tableName);
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        command.Parameters.AddWithValue("@TableName", tableName);
-
-                        using (var reader = await command.ExecuteReaderAsync())
+                        if (await reader.ReadAsync())
                         {
-                            if (await reader.ReadAsync())
-                            {
-                                primaryKeyColumn = reader.GetString(0);
-                            }
+                            primaryKeyColumn = reader.GetString(0);
                         }
                     }
                 }
@@ -220,31 +242,30 @@ namespace SEP.ClientDatabase
 
                 string query = $"SELECT * FROM {tableName} WHERE {primaryKeyColumn} = @Id";
 
-                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, connection))
                 {
-                    await connection.OpenAsync();
+                    command.Parameters.AddWithValue("@Id", id);
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (var reader = await command.ExecuteReaderAsync())
+                        if (await reader.ReadAsync())
                         {
-                            if (await reader.ReadAsync())
+                            List<dbDocumentField> fields = new List<dbDocumentField>();
+
+                            for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                List<dbDocumentField> fields = new List<dbDocumentField>();
+                                var columnName = reader.GetName(i);
+                                var columnValue = reader.GetValue(i)?.ToString();
+                                var columnType = reader.GetFieldType(i);
 
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    var columnName = reader.GetName(i);
-                                    var columnValue = reader.GetValue(i)?.ToString();
-                                    var columnType = reader.GetFieldType(i).ToString();
+                                System.Diagnostics.Debug.WriteLine(columnName);
+                                System.Diagnostics.Debug.WriteLine(columnValue);
+                                System.Diagnostics.Debug.WriteLine(columnType);
 
-                                    fields.Add(new dbDocumentField(columnName, columnValue, Type.GetType(columnType)));
-                                }
-
-                                dbDocument = new dbDocument(fields);
+                                fields.Add(new dbDocumentField(columnName, columnValue, columnType));
                             }
+
+                            dbDocument = new dbDocument(fields);
                         }
                     }
                 }
@@ -256,9 +277,6 @@ namespace SEP.ClientDatabase
 
             return dbDocument ?? throw new Exception("Document not found.");
         }
-
-
-
 
         public async Task<dbResponse> UpdateDocumentByID(string tableName, string id, CustomClass updateDocumentObject)
         {
@@ -327,8 +345,6 @@ namespace SEP.ClientDatabase
                 return new dbResponse(false, $"Error: {ex.Message}");
             }
         }
-
-
     }
 
 }

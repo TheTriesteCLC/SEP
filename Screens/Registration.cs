@@ -186,7 +186,7 @@ namespace SEP
             {
                 var databaseNames = new List<string>();
                 using (var sqlConnection = new SqlConnection(connectionString))
-                { 
+                {
                     sqlConnection.Open();
 
                     // SQL query to get all database names
@@ -209,21 +209,6 @@ namespace SEP
                     comboboxDatabase.Visible = true;
                 }
             }
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mongodbRadio_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sqlServierRadio_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
