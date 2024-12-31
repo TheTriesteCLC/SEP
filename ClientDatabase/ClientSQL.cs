@@ -1,15 +1,7 @@
-﻿using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
-using SEP.CustomClassBuilder;
+﻿using SEP.CustomClassBuilder;
 using SEP.Interfaces;
 using SEP.Ultils;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 namespace SEP.ClientDatabase
 {

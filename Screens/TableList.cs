@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
+﻿using System.Data;
 using SEP.ClientDatabase;
 using SEP.CurrUser;
 using SEP.Interfaces;
@@ -21,16 +9,10 @@ namespace SEP
     {
         private IDatabase database;
 
-        //public TableList()
-        //{
-        //    InitializeComponent();
-        //    database = CurrUserInfo.getUserDB();
-        //    LoadCollections();
-        //}
         public TableList()
         {
             InitializeComponent();
-            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
+            database = CurrUserInfo.getUserDB();
             LoadCollections();
         }
         private async void LoadCollections()

@@ -1,17 +1,7 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
-using SEP.ClientDatabase;
-using SEP.DBManagement;
+﻿using SEP.ClientDatabase;
 using SEP.DBManagement.UsersCollection;
 using SEP.Interfaces;
 using SEP.Ultils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEP.CurrUser
 {
@@ -25,8 +15,8 @@ namespace SEP.CurrUser
         protected CurrUserInfo(User user)
         {
             currUser = user;
-            //_database = new ClientMongoDB(user.connectionString, user.databaseName);
             _database = HandleConnectoDatabase(user.connectionString, user.databaseName);
+            //_database = HandleConnectoDatabase(Constants.testSQLConnectionString, Constants.testSQLDB); // TEST
         }
         private static IDatabase HandleConnectoDatabase(string connectionString, string databaseName)
         {

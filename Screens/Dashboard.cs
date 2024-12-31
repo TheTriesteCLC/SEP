@@ -14,19 +14,11 @@ namespace SEP
         private string collectionName;
         private string chosenDocumentId;
 
-        //public Dashboard(string collectionName)
-        //{
-        //    InitializeComponent();
-        //    database = CurrUserInfo.getUserDB();
-
-        //    this.collectionName = collectionName;
-        //    LoadCollectionData();
-
-        //}
         public Dashboard(string collectionName)
         {
             InitializeComponent();
-            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
+            database = CurrUserInfo.getUserDB();
+
             this.collectionName = collectionName;
             LoadCollectionData();
 

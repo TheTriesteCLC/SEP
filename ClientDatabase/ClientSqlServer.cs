@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Data.SqlClient;
 using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SEP.CustomClassBuilder;
 using SEP.Interfaces;
 using SEP.Ultils;
-using System.Data.SqlClient;
-using MongoDB.Driver.Core.Configuration;
 
 namespace SEP.ClientDatabase
 {
@@ -49,7 +44,7 @@ namespace SEP.ClientDatabase
             }
         }
 
-        public async Task<dbResponse> CreateNewCollection(string collectionName)
+        public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
         {
             var collectionList = await database.ListCollectionNames().ToListAsync();
             if (collectionList.Contains(collectionName))
