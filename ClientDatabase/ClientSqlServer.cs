@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using SEP.CustomClassBuilder;
+﻿using SEP.CustomClassBuilder;
 using SEP.Interfaces;
 using SEP.Ultils;
 using System.Data.SqlClient;
-using MongoDB.Driver.Core.Configuration;
-using System.Data.Common;
 using System.Data;
 
 namespace SEP.ClientDatabase
@@ -47,7 +38,62 @@ namespace SEP.ClientDatabase
 
         public async Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject)
         {
-            throw new NotImplementedException();
+            // Get the primary key column
+            string primaryKeyColumn = await GetPrimaryKeyColumn(collectionName);
+            System.Diagnostics.Debug.WriteLine(primaryKeyColumn);
+            if (string.IsNullOrEmpty(primaryKeyColumn))
+            {
+                return new dbResponse(false, "Primary key column not found for the table.");
+            }
+            var insertQuery = $"INSERT INTO {collectionName} ";
+            var properties = new List<string>();
+            var values = new List<string>();
+
+            foreach (var property in newDocumentObject.properties)
+            {
+                var propertyName = property.PropertyName;
+                var type = property.PropertyType;
+                var propertyValue = newDocumentObject.getProp(propertyName);
+
+                Console.WriteLine(propertyName);
+                System.Diagnostics.Debug.WriteLine(propertyName);
+                properties.Add(propertyName);
+
+                if (type == typeof(string))
+                {
+                    values.Add($"\'@{propertyValue}\'");
+                }
+                else if (type == typeof(bool))
+                {
+                    values.Add($"{(propertyValue.ToString().ToLower() == "true" ? 1 : 0)}");
+                }
+                else if (type == typeof(DateTime))
+                {
+                    values.Add($"'{((DateTime)propertyValue).ToString("yyyy-MM-dd HH:mm:ss")}'");
+                }
+                else
+                {
+                    values.Add($"{propertyValue}");
+                }
+            }
+            insertQuery = insertQuery + $"( {string.Join(", ", properties)} )" +
+                $"VALUES ({string.Join(", ", values)})";
+
+            System.Diagnostics.Debug.WriteLine("Insert query:");
+            System.Diagnostics.Debug.WriteLine(insertQuery);
+            using (var command = new SqlCommand(insertQuery, this.connection))
+            {
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                if (rowsAffected > 0)
+                {
+                    return new dbResponse(true, "Document inserted successfully.");
+                }
+                else
+                {
+                    return new dbResponse(false, "No rows were inserted. The document might not exist.");
+                }
+            }
         }
 
         public async Task<dbResponse> CreateNewCollection(string collectionName, dbSchema schema = null)
