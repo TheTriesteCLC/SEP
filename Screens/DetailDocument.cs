@@ -59,7 +59,8 @@ namespace SEP.Screens
             this.documentId = documentId;
             this.editable = editable;
 
-            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
+            //this.database = new ClientSQLServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
+            this.database = CurrUser.CurrUserInfo.getUserDB();
             this.documentDetailManager = new DocumentDetailManager();
             this.fields = new List<(string PropertyName, Type PropertyType, string PropertyValue)>();
 

@@ -14,23 +14,22 @@ namespace SEP
         private string collectionName;
         private string chosenDocumentId;
 
+        public Dashboard(string collectionName)
+        {
+            InitializeComponent();
+            database = CurrUserInfo.getUserDB();
+
+            this.collectionName = collectionName;
+            LoadCollectionData();
+        }
         //public Dashboard(string collectionName)
         //{
         //    InitializeComponent();
-        //    database = CurrUserInfo.getUserDB();
-
+        //    this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
         //    this.collectionName = collectionName;
         //    LoadCollectionData();
 
         //}
-        public Dashboard(string collectionName)
-        {
-            InitializeComponent();
-            this.database = new ClientSqlServer($"data source=localhost;initial catalog=SEP;user id=sa;password=sqlserver;", "SEP");
-            this.collectionName = collectionName;
-            LoadCollectionData();
-
-        }
         private async void LoadCollectionData()
         {
             List<dbDocument> documents = await this.database.GetCollection(collectionName);
