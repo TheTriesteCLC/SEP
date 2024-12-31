@@ -13,7 +13,9 @@ namespace SEP
         public static readonly string mainDBString = "SEP";
         public static readonly string usersDBName = "Users";
 
-        public static readonly string testSQLConenctionString = $"data source=TrishVoltman;initial catalog=master;user id=sa;password=svcntt";
+        //public static readonly string testSQLConnectionString = $"data source=TrishVoltman;initial catalog=master;user id=sa;password=svcntt";
+        public static readonly string testSQLConnectionString = $"data source=localhost;user id=sa;password=svcntt;TrustServerCertificate=True;trusted_connection=true;";
+        public static readonly string testSQLDB = $"master";
         public static readonly int stringMaxLength = 1000;
         public static readonly List<Type> supportedType = new List<Type>
         {

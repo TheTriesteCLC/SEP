@@ -1,13 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using MongoDB.Driver;
-using System.Windows.Forms;
-using SEP.ClientDatabase;
-using SEP.Interfaces;
-
-namespace SEP
+﻿namespace SEP
 {
     internal static class Program
     {
@@ -16,9 +7,6 @@ namespace SEP
         /// </summary>
         static void Main()
         {
-            //Application.Run(new TableList());
-            //Application.Exit();
-
             Application.Run(new Login());
             Application.Exit();
         }
