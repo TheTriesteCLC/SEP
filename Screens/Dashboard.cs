@@ -86,10 +86,18 @@ namespace SEP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddNewDocument addNewDocument = new AddNewDocument(collectionName);
-
-            addNewDocument.registerObserver(this);
-            addNewDocument.ShowDialog();
+            if (this.database is ClientSQLServer)
+            {
+                AddNewDocument addNewDocument = new AddNewDocument(collectionName, true);
+                addNewDocument.registerObserver(this);
+                addNewDocument.ShowDialog();
+            }
+            else
+            {
+                AddNewDocument addNewDocument = new AddNewDocument(collectionName, false);
+                addNewDocument.registerObserver(this);
+                addNewDocument.ShowDialog();
+            }
             //this.Close();
         }
 

@@ -32,15 +32,12 @@ namespace SEP.ClientDatabase
             {
                 throw new Exception($"Failed to connect to SQL Server: {ex.Message}");
             }
-
-
         }
 
         public async Task<dbResponse> AddNewDocument(string collectionName, CustomClass newDocumentObject)
         {
             // Get the primary key column
             string primaryKeyColumn = await GetPrimaryKeyColumn(collectionName);
-            System.Diagnostics.Debug.WriteLine(primaryKeyColumn);
             if (string.IsNullOrEmpty(primaryKeyColumn))
             {
                 return new dbResponse(false, "Primary key column not found for the table.");
@@ -55,13 +52,11 @@ namespace SEP.ClientDatabase
                 var type = property.PropertyType;
                 var propertyValue = newDocumentObject.getProp(propertyName);
 
-                Console.WriteLine(propertyName);
-                System.Diagnostics.Debug.WriteLine(propertyName);
-                properties.Add(propertyName);
+                properties.Add($"[{propertyName}]");
 
                 if (type == typeof(string))
                 {
-                    values.Add($"\'@{propertyValue}\'");
+                    values.Add($"\'{propertyValue}\'");
                 }
                 else if (type == typeof(bool))
                 {
@@ -115,6 +110,7 @@ namespace SEP.ClientDatabase
                     $"{string.Join(", ", columnDefinitions)}," +
                     "PRIMARY KEY (_id))";
 
+                System.Diagnostics.Debug.WriteLine("Create table query");
                 System.Diagnostics.Debug.WriteLine(query);
                 using (SqlCommand command = new SqlCommand(query, this.connection))
                 {

@@ -135,7 +135,7 @@ namespace SEP.Components
                     }
                     catch (Exception ex)
                     {
-                        errorType.SetError(dataInput, $"Date format must be MM/DD/YYYY");
+                        errorType.SetError(dataInput, $"Date format must be DD/MM/YYYY");
                         return false;
                     }
                 }

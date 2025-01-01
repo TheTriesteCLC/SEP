@@ -27,9 +27,10 @@ namespace SEP.Screens
         private List<(string PropertyName, Type PropertyType)> initFields;
 
         private List<FieldUI> fieldUIList;
+        private bool schemaRequired;
         private DocumentDetailManager addNewDocumentManager;
 
-        public AddNewDocument(string collectionName)
+        public AddNewDocument(string collectionName, bool schemaRequired)
         {
             InitializeComponent();
             this.database = CurrUserInfo.getUserDB();
@@ -38,7 +39,17 @@ namespace SEP.Screens
             this.initFields = new List<(string PropertyName, Type PropertyType)>();
 
             this.fieldUIList = new List<FieldUI>();
+            this.schemaRequired = schemaRequired;
             this.addNewDocumentManager = new DocumentDetailManager();
+
+            if (schemaRequired)
+            {
+                this.button4.Enabled = false;
+            }else
+            {
+                this.button4.Enabled = true;
+            }
+            this.buttonAdd.Enabled = false;
         }
         public void registerObserver(IDocumentObserver documentObserver)
         {
@@ -93,6 +104,12 @@ namespace SEP.Screens
         private void addNewField(string fieldName, Type fieldType)
         {
             FieldUI newFieldUI = new FieldUI(fieldType, fieldName);
+            if(this.schemaRequired)
+            {
+                newFieldUI.typeComboBox.Enabled = false;
+                newFieldUI.nameInput.Enabled = false;
+                newFieldUI.deleteBtn.Enabled = false;
+            }
             fieldUIList.Add(newFieldUI);
 
             int rowIndex = tableLayoutPanel1.RowCount;
@@ -138,6 +155,18 @@ namespace SEP.Screens
                 {
                     this.buttonAdd.Enabled = true;
                     newFieldUI.errorName.SetError(newFieldUI.nameInput, "");
+                }
+            };
+            newFieldUI.dataInput.Validating += (s, e) =>
+            {
+                bool isValidated = newFieldUI.validateDataInput();
+                if (!isValidated)
+                {
+                    this.buttonAdd.Enabled = false;
+                }
+                else
+                {
+                    this.buttonAdd.Enabled = true;
                 }
             };
         }

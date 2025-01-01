@@ -54,7 +54,7 @@ namespace SEP.Ultils
                 var propertyValue = updateDocumentObject.getProp(propertyName);
                 if (type == typeof(string))
                 {
-                    parameters.Add($"[{propertyName}] = \'@{propertyValue}\'"); // String must be inside double quotes
+                    parameters.Add($"[{propertyName}] = \'{propertyValue}\'"); // String must be inside double quotes
                 }
                 else if (type == typeof(bool))
                 {
