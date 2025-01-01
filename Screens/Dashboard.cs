@@ -139,7 +139,7 @@ namespace SEP
             if (confirmResult == DialogResult.Yes)
             {
 
-                dbResponse result = await this.database.DeleteDocumentByID(collectionName, this.chosenDocumentId);
+                dbResponse result = await handleDeleteDocument(this.chosenDocumentId);
                 MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCollectionData();
             }

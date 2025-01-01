@@ -273,7 +273,5 @@ namespace SEP.Screens
             this.button1.Enabled = true;
             return true;
         }
-
-
     }
 }

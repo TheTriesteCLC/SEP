@@ -45,7 +45,7 @@ namespace SEP.DBManagement.UsersCollection
             return _instance;
         }
 
-        public Boolean addNewUser(User newUser)
+        public bool addNewUser(User newUser)
         {
             var filterUser = Builders<User>.Filter
                 .Eq(user => user.username, newUser.username);
